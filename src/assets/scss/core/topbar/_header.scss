@@ -89,6 +89,10 @@ Topbar Responsive
       justify-content: space-between;
     }
   }
+
+  .dark-logo {
+    height: 50%; width: 50% !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -109,6 +113,10 @@ Topbar Responsive
       }
     }
   }
+
+  .dark-logo {
+    height: 25%; width: 25% !important;
+  }
 }
 
 
@@ -119,5 +127,9 @@ Topbar Responsive
   }
   .topbar .top-navbar .navbar-header {
     position: fixed;
+  }
+
+  .dark-logo {
+    height: 50%; width: 50%;
   }
 }
