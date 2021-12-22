@@ -13,7 +13,7 @@ export const topcards: topcard[] = [
         icon: 'bi bi-wallet',
         title: 'Nueva Cotización',
         subtitle: '',
-        href: '/cotizacion'
+        href: '/busqueda-articulo'
     },
     {
         bgcolor: 'danger',

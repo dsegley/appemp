@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CotizacionComponent } from './cotizacion.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BusquedaComponent } from './busqueda/busqueda.component';
-import { PrendaService } from '../services/prenda/prenda.service';
-import { Prenda } from '../services/prenda/prenda';
 
 const routes: Routes = [
   {
@@ -21,7 +18,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CotizacionComponent,
-    BusquedaComponent,
   ],
   imports: [
     FormsModule,
@@ -30,7 +26,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   providers: [
-    PrendaService
   ]
 })
 export class CotizacionModule { }

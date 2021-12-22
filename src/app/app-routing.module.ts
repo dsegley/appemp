@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BusquedaArticuloComponent } from './busqueda-articulo/busqueda-articulo.component';
 
 import { FullComponent } from './layouts/full/full.component';
 
@@ -22,8 +23,12 @@ export const Approutes: Routes = [
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
       },
       {
-        path: 'cotizacion',
+        path: 'cotizacion/:prenda',
         loadChildren: () => import('./cotizacion/cotizacion.module').then(m => m.CotizacionModule)
+      },
+      {
+        path: 'busqueda-articulo',
+        component: BusquedaArticuloComponent
       }
     ]
   },
