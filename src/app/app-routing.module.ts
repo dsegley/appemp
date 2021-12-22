@@ -20,6 +20,10 @@ export const Approutes: Routes = [
       {
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
+      },
+      {
+        path: 'cotizacion',
+        loadChildren: () => import('./cotizacion/cotizacion.module').then(m => m.CotizacionModule)
       }
     ]
   },

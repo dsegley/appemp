@@ -1,0 +1,53 @@
+<div class="card" style="height: 500px;">
+    <div class="card-body">
+        <!-- Breadcrum -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Buscar</li>
+            </ol>
+          </nav>
+          <div class="card-title text-center">
+            <h1 class="h1">Buscar Artículo</h1>
+          </div>
+          <form>
+              <div class="row justify-content-md-center">
+                <div class="col-8">
+                    <div class="input-group">
+                      <input [(ngModel)]="query" name="query" type="text" required pattern="[A-Za-z]{3}" class="form-control" placeholder="Buscar por nombre o modelo">
+                      <button (click)="search()" type="submit" class="btn btn-success">Buscar</button>
+                    </div>
+                </div>
+                <div *ngIf="showAlert" class="row justify-content-md-center mt-2">
+                  <div class="col-8 alert alert-warning" role="alert">
+                    No se encontraron resultados
+                  </div>
+                </div>
+                <div class="row justify-content-md-center mt-2">
+                    <table class="table" *ngIf="busqueda.length >= 1">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">RAM</th>
+                            <th scope="col">Almacenamiento</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of busqueda; let i = index" scope="row">
+                            <td>{{i + 1}}</td>
+                            <td>{{item.marca}}</td>
+                            <td>{{item.modelo}}</td>
+                            <td>{{item.ram}}</td>
+                            <td>{{item.almacenamiento}}</td>
+                            <th><a class="btn btn-outline-success btn-sm">Seleccionar</a></th>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+          </form>
+    </div>
+</div>
