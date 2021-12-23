@@ -13,7 +13,7 @@ export class PrendaService {
 
   /** Retorna la busqueda en el catalogo de prendas */
   public searchItem(query:string): Observable<any> {
-    let endpoint = this.baseURL + "item/?query=" + query
+    let endpoint = this.baseURL + "item_search/?query=" + query
     return this.httpClient.get(endpoint)
   }
 
@@ -21,5 +21,10 @@ export class PrendaService {
   public getCatEst(): Observable<any> {
     let endpoint = this.baseURL + "cat_est_prenda"
     return this.httpClient.get(endpoint)
+  }
+
+  public getItemDetail(id:number): Observable<any> {
+    let endpoint = this.baseURL + "item_detail/" + id
+    return this.httpClient.get(endpoint) 
   }
 }

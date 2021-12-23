@@ -24,6 +24,12 @@
                 </div>
               </div>
               <div class="row justify-content-md-center mt-2">
+                <div class="h-100" *ngIf="loading">
+                  <div class="spinner col">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+              </div>
                   <table class="table" *ngIf="busqueda.length >= 1">
                       <thead>
                         <tr>

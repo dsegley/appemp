@@ -1,4 +1,10 @@
-<div class="card" style="height: 500px;">
+<div class="h-100" *ngIf="loading">
+    <div class="spinner col">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="card" style="height: 500px;" *ngIf="!loading">
     <div class="card-body">
         <!-- Breadcrum -->
         <nav aria-label="breadcrumb">
@@ -11,19 +17,66 @@
         <div class="card-title text-center">
             <h1 class="h1">Cotización</h1>
         </div>
-        <div class="row">
-            <label class="form-label-lg text-center">Apple TV</label>
-        </div>
-        <div class="text-center">
-            <div class="form-floating col-6">
-                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <label for="floatingSelect">Estado</label>
+        <form>
+            <div class="row">
+                <div class="col">
+                    <label for="input-name" class="form-label col-form-label">Marca: </label>
+                    <input id="input-name" class="form-control" type="text" disabled placeholder="{{prenda?.marca}}">
+                </div>
+                <div class="col">
+                    <label for="input-name" class="form-label col-form-label">Modelo: </label>
+                    <input id="input-name" class="form-control" type="text" disabled placeholder="{{prenda?.modelo}}">
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col">
+                    <label for="input-name" class="form-label col-form-label">Almacenamiento: </label>
+                    <input id="input-name" class="form-control" type="text" disabled placeholder="{{prenda?.almacenamiento}}">
+                </div>
+                <div class="col">
+                    <label for="input-name" class="form-label col-form-label">RAM: </label>
+                    <input id="input-name" class="form-control" type="text" disabled placeholder="{{prenda?.ram}}">
+                </div>
+            </div>
+            <div class="mt-5 mr-5 row g-2">
+                <div class="mb-5 col-4">
+                    <div class="form-floating">
+                        <select name="selectedEstadoPrenda" [(ngModel)]="selectedEstadoPrenda" class="form-select" id="floatingSelectGrid" (change)="calcular()" >
+                          <option value="-1" selected>Seleccione</option>
+                            <option *ngFor="let est of catEstadoPrenda let i = index" value="{{i}}">
+                                {{est.estado_prenda}}
+                            </option>
+                        </select>
+                        <label for="floatingSelectGrid">Estado</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label class="form-label">Prestamo Máximo: </label>
+                    <div class="row">
+                        <label class="fs-6">${{prestamoMaximo.toFixed(2)}}</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label class="form-label">Prestamo Minimo: </label>
+                    <div class="row">
+                        <label class="fs-6">${{prestamoMinimo.toFixed(2)}}</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label class="form-label">Prestamo Aprobado: </label>
+                    <div class="row">
+                        <label class="display-3 fw-bold">${{prestamoAprobado.toFixed(2)}}</label>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <button [disabled]="isButtonDisabled" class="float-end btn btn-lg btn-primary">Aprobar</button>
+                            <a href="busqueda-articulo" class="mx-3 float-end btn btn-secondary btn-lg">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
