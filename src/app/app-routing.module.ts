@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BusquedaArticuloComponent } from './busqueda-articulo/busqueda-articulo.component';
+import { BusquedaClienteComponent } from './busqueda-cliente/busqueda-cliente.component';
 
 import { FullComponent } from './layouts/full/full.component';
 
@@ -29,6 +30,10 @@ export const Approutes: Routes = [
       {
         path: 'busqueda-articulo',
         component: BusquedaArticuloComponent
+      },
+      {
+        path: 'busqueda-cliente',
+        component: BusquedaClienteComponent
       }
     ]
   },

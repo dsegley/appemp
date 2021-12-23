@@ -34,15 +34,13 @@ export class BusquedaArticuloComponent implements OnInit {
 
   search(): void {
     this.loading = true
+    this.showAlert = false
+    this.busqueda = []
     this.prendaService.searchItem(this.query).subscribe(data => {
       this.busqueda = data;
       this.loading = false
       if (this.busqueda.length < 1) {
         this.showAlert = true
-      }
-
-      else {
-        this.showAlert = false
       }
     })
   }

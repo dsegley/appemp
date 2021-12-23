@@ -22,6 +22,13 @@ export class CotizacionComponent implements OnInit {
   loading = true
   isButtonDisabled = true
 
+  id_detalle_prenda = ""
+
+  countOptions = {
+    duration: 0.5,
+    prefix: "$"
+  }
+
   constructor(
     private prendaService: PrendaService,
     private route: ActivatedRoute) { }
@@ -39,10 +46,11 @@ export class CotizacionComponent implements OnInit {
               montos.push(e.porc_aforo * Number(this.prenda?.monto_aforo))
             })
         
-            this.prestamoMaximo = Math.max(...montos)
-            this.prestamoMinimo = Math.min(...montos)
+            this.prestamoMaximo = Number(Math.max(...montos).toFixed(2))
+            this.prestamoMinimo = (Number(Math.min(...montos).toFixed(2)))
 
             this.loading = false
+            this.id_detalle_prenda = id
           })
         }
       })
@@ -57,5 +65,11 @@ export class CotizacionComponent implements OnInit {
 
     this.isButtonDisabled = false
     this.prestamoAprobado = this.prenda?.monto_aforo * this.catEstadoPrenda[this.selectedEstadoPrenda]?.porc_aforo
+    this.prestamoAprobado = Number(this.prestamoAprobado.toFixed(2))
+  }
+
+  saveData() {
+    sessionStorage.setItem("id_detalle_prenda", this.id_detalle_prenda )
+    sessionStorage.setItem("cotizacion_value", String(this.prestamoAprobado) )
   }
 }

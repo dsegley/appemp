@@ -25,6 +25,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BusquedaArticuloComponent } from './busqueda-articulo/busqueda-articulo.component';
+import { BusquedaClienteComponent } from './busqueda-cliente/busqueda-cliente.component';
+import { CountUpModule } from 'ngx-countup';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -41,6 +43,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NavigationComponent,
     SidebarComponent,
     BusquedaArticuloComponent,
+    BusquedaClienteComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +55,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbModule,
     RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
     PerfectScrollbarModule,
+    CountUpModule
   ],
   providers: [
     {

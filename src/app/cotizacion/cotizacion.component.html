@@ -53,25 +53,25 @@
                 <div class="col">
                     <label class="form-label">Prestamo Máximo: </label>
                     <div class="row">
-                        <label class="fs-6">${{prestamoMaximo.toFixed(2)}}</label>
+                        <label class="fs-6">${{prestamoMaximo}}</label>
                     </div>
                 </div>
                 <div class="col">
                     <label class="form-label">Prestamo Minimo: </label>
                     <div class="row">
-                        <label class="fs-6">${{prestamoMinimo.toFixed(2)}}</label>
+                        <label class="fs-6">${{prestamoMinimo}}</label>
                     </div>
                 </div>
                 <div class="col">
                     <label class="form-label">Prestamo Aprobado: </label>
                     <div class="row">
-                        <label class="display-3 fw-bold">${{prestamoAprobado.toFixed(2)}}</label>
+                        <span [countUp]="prestamoAprobado" [options]="countOptions" class="display-3 fw-bold">0</span>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <button [disabled]="isButtonDisabled" class="float-end btn btn-lg btn-primary">Aprobar</button>
+                            <button (click)="saveData()" routerLink="/busqueda-cliente" [disabled]="isButtonDisabled" class="float-end btn btn-lg btn-primary">Aprobar</button>
                             <a href="busqueda-articulo" class="mx-3 float-end btn btn-secondary btn-lg">Cancelar</a>
                         </div>
                     </div>
