@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BusquedaArticuloComponent } from './busqueda-articulo/busqueda-articulo.component';
+import { BusquedaBoletaComponent } from './busqueda-boleta/busqueda-boleta.component';
 import { BusquedaClienteComponent } from './busqueda-cliente/busqueda-cliente.component';
 
 import { FullComponent } from './layouts/full/full.component';
@@ -34,6 +35,10 @@ export const Approutes: Routes = [
       {
         path: 'busqueda-cliente',
         component: BusquedaClienteComponent
+      },
+      {
+        path: 'busqueda-boleta',
+        component: BusquedaBoletaComponent
       }
     ]
   },

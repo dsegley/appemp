@@ -10,7 +10,8 @@
             </ol>
         </nav>
     <div class="card-title text-center">
-        <h1 class="h1">Buscar Cliente</h1>
+      <h4 class="card-title">Buscar Cliente</h4>
+      <h5 class="card-subtitle">Seleccione uno de la lista</h5>
     </div>
     <form>
         <div class="row justify-content-md-center">
@@ -37,7 +38,7 @@
             </div>
           </div>
           <div class="table-responsive" style="max-height: 350px;">
-            <table *ngIf="clientSearchResult.length > 1" class="table">
+            <table *ngIf="clientSearchResult.length > 0" class="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>

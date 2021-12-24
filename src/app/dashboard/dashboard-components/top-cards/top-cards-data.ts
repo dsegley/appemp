@@ -20,6 +20,6 @@ export const topcards: topcard[] = [
         icon: 'bi bi-coin',
         title: 'Registrar Pago',
         subtitle: '',
-        href: ''
+        href: '/busqueda-boleta'
     }
 ] 

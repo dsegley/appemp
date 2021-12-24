@@ -8,7 +8,8 @@
             </ol>
         </nav>
         <div class="card-title text-center">
-          <h1 class="h1">Buscar Artículo</h1>
+          <h4 class="card-title">Buscar Artículo</h4>
+          <h5 class="card-subtitle">Seleccione uno de la lista</h5>
         </div>
         <form>
             <div class="row justify-content-md-center">
@@ -31,7 +32,7 @@
                   </div>
               </div>
                   <div class="table-responsive" style="max-height: 350px;">
-                    <table class="table" *ngIf="busqueda.length >= 1">
+                    <table class="table" *ngIf="busqueda.length > 0">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -47,8 +48,8 @@
                           <td>{{i + 1}}</td>
                           <td>{{item.marca}}</td>
                           <td>{{item.modelo}}</td>
-                          <td>{{item.ram}}</td>
-                          <td>{{item.almacenamiento}}</td>
+                          <td>{{item.ram}} GB</td>
+                          <td>{{item.almacenamiento}} GB</td>
                           <th><a [routerLink]="['/cotizacion', item.id_detalle_prenda]" class="btn btn-outline-success btn-sm">Seleccionar</a></th>
                         </tr>
                       </tbody>

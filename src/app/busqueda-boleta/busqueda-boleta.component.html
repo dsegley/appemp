@@ -1,0 +1,60 @@
+<div class="card" style="height: 600px;">
+    <div class="card-body">
+       <!-- Breadcrum -->
+       <nav aria-label="breadcrumb">
+           <ol class="breadcrumb">
+           <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+           <li class="breadcrumb-item active" aria-current="page">Buscar Boleta</li>
+           </ol>
+       </nav>
+   <div class="card-title text-center">
+        <h4 class="card-title">Buscar Boleta</h4>
+        <h5 class="card-subtitle">Seleccione una boleta</h5>
+   </div>
+   <form>
+       <div class="row justify-content-md-center">
+         <div class="col-8">
+             <div class="input-group">
+               <input [(ngModel)]="query" name="query" type="text" required pattern="[A-Za-z]{3}" class="form-control" placeholder="Buscar por nombre o # de boleta">
+               <button (click)="search()" type="submit" class="btn btn-success">Buscar</button>
+             </div>
+         </div>
+         <div *ngIf="showAlert" class="row justify-content-md-center mt-2">
+           <div class="col-8 alert alert-warning" role="alert">
+             No se encontraron resultados
+           </div>
+         </div>
+         <div class="row justify-content-md-center mt-2" *ngIf="loading">
+           <div class="h-100" >
+             <div class="spinner col">
+               <div class="double-bounce1"></div>
+               <div class="double-bounce2"></div>
+             </div>
+           </div>
+         </div>
+         <div class="table-responsive" style="max-height: 350px;">
+           <table *ngIf="searchBoletaResult.length > 0" class="table">
+             <thead>
+               <tr>
+                 <th scope="col"># de boleta</th>
+                 <th scope="col">Nombre</th>
+                 <th scope="col">Fecha de alta</th>
+                 <th scope="col">Fecha de vencimiento</th>
+                 <th scope="col"></th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let item of searchBoletaResult;" scope="row">
+                 <td>{{item.id_boleta}}</td>
+                 <td>{{item.nombre_completo}}</td>
+                 <td class="es-datetime">{{item.fecha_alta | date: 'fullDate':'UTC':'es'}}</td>
+                 <td class="es-datetime">{{item.fecha_fin | date: 'fullDate':'UTC':'es'}}</td>
+                 <th><a class="btn btn-outline-success btn-sm">Seleccionar</a></th>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+       </div>
+   </form>
+    </div>
+</div>
