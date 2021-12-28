@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BusquedaArticuloComponent } from './busqueda-articulo/busqueda-articulo.component';
 import { BusquedaBoletaComponent } from './busqueda-boleta/busqueda-boleta.component';
 import { BusquedaClienteComponent } from './busqueda-cliente/busqueda-cliente.component';
+import { DatosEmpenoComponent } from './datos-empeno/datos-empeno.component';
 
 import { FullComponent } from './layouts/full/full.component';
 import { LoginComponent } from './login/login.component';
@@ -18,11 +19,6 @@ export const Approutes: Routes = [
     component: FullComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-      {
-        path: 'login',
-        loadChildren: () => import('./login/login.component').then(m => m.LoginComponent)
-      },
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -50,6 +46,10 @@ export const Approutes: Routes = [
       {
         path: 'busqueda-boleta',
         component: BusquedaBoletaComponent
+      },
+      {
+        path: 'datos_empeno',
+        component: DatosEmpenoComponent
       }
     ]
   },
