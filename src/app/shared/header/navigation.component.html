@@ -32,13 +32,13 @@
           class="rounded-circle"
           width="31"
         />
-        <span class="ms-2">John Deo</span>
+        <span class="ms-2">{{user?.nombre}}</span>
       </a>
       <div class="dropdown-menu-right" ngbDropdownMenu>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="javascript:void(0)"> Account Setting</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="javascript:void(0)"> Logout</a>
+        <a class="dropdown-item" (click)="logout()"> Logout</a>
       </div>
     </li>
     <!-- ============================================================== -->

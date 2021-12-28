@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth/auth.service";
 
 //declare var $: any;
 
@@ -10,7 +11,10 @@ import { Router } from "@angular/router";
 })
 export class FullComponent implements OnInit {
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) {
+
+  }
+  
   public isCollapsed = false;
   public innerWidth: number = 0;
   public defaultSidebar: string = "";

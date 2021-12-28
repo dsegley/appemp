@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Prenda } from '../services/prenda/prenda';
-import { CatEstPrenda } from '../services/prenda/cat-est-prenda';
+import { Prenda } from '../models/prenda';
+import { CatEstPrenda } from '../models/cat-est-prenda';
 import { PrendaService } from '../services/prenda/prenda.service';
 import { ActivatedRoute } from '@angular/router';
 

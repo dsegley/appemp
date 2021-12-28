@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Prenda } from '../services/prenda/prenda';
+import { Prenda } from '../models/prenda';
 import { PrendaService } from '../services/prenda/prenda.service';
 
 @Component({
