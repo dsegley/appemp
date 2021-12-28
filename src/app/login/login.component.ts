@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup 
   submitted = false
+  loading = false
 
   constructor(
     private authService: AuthService,
@@ -34,15 +35,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true
-
+    
     if (this.form.invalid) {
       return
     }
-
+    
+    this.loading = true
     let controls = this.form.controls
+    
     this.authService.login(controls.username.value, controls.password.value).pipe(first())
     .subscribe({
       next: () => {
+        this.loading = false
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
         this.router.navigateByUrl(returnUrl)
       },

@@ -17,6 +17,7 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private router: Router) { 
+      
     let userVal = localStorage.getItem('user')!
     let userParsed = JSON.parse(userVal)
     this.userSubject = new BehaviorSubject<User>(userParsed)
@@ -30,7 +31,6 @@ export class AuthService {
   login(username: string, password: string) {
     let endpoint = this.baseURL + "auth";
     return this.httpClient.post<any>(endpoint, {username, password}).pipe(map(user => {
-      console.log(user)
       localStorage.setItem('user', JSON.stringify(user))
       this.userSubject.next(user)
       return user 
