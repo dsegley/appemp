@@ -29,6 +29,7 @@ import { BusquedaClienteComponent } from './busqueda-cliente/busqueda-cliente.co
 import { CountUpModule } from 'ngx-countup';
 import { BusquedaBoletaComponent } from './busqueda-boleta/busqueda-boleta.component';
 import { LoginComponent } from './login/login.component';
+import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -48,6 +49,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BusquedaClienteComponent,
     BusquedaBoletaComponent,
     LoginComponent,
+    AgregarClienteComponent,
   ],
   imports: [
     CommonModule,
