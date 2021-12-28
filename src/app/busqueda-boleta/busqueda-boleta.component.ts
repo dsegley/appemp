@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchBoletaResult } from '../services/boleta/boleta';
+import { SearchBoletaResult } from '../models/boleta';
 import { BoletaService } from '../services/boleta/boleta.service';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-MX'
