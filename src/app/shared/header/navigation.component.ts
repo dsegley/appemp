@@ -4,8 +4,6 @@ import { AuthService } from '../../services/auth/auth.service';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { User } from '../../models/user';
 
-declare var $: any;
-
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html'
