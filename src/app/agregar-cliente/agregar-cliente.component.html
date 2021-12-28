@@ -1,0 +1,82 @@
+<div class="card" style="height: 600px;">
+    <div class="card-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Agregar Cliente</li>
+            </ol>
+        </nav>
+        <div class="card-title text-center">
+            <h4 class="card-title">Agregar Cliente</h4>
+            <h5 class="card-subtitle">Ingrese los datos</h5>
+        </div>
+        <form class="form-control">
+            <div class="container"> 
+                <div class="row align-items-start">
+                    <h3>Datos del cliente</h3>
+                    <div class="col">
+                        <input class="form-control"required pattern="[A-Za-z]{3}" requiredminlength="3" maxlength="10" size="10" formControlName="nom_1" type="text" placeholder="Primer nombre">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" formControlName="nom_2" type="text" placeholder="Segundo nombre">
+                    </div>   
+                    <div class="col">
+                        <input class="form-control" formControlName="apellido_pat" type="text" placeholder="Apellido Paterno">
+                    </div> 
+                    <div class="col">
+                        <input class="form-control" formControlName="apellido_mat" type="text" placeholder="Apellido Materno">
+                    </div>
+                    <div class="col-1">
+                        <input class="form-control" requiredminlength="2" maxlength="2" formControlName="edad" type="text" placeholder="Edad">
+                    </div>  
+                </div>
+                <h3>Dirección</h3>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <input class="form-control" formControlName="nom_direccion" type="text" placeholder="Calle">
+                    </div>
+                    <div class="col-1">
+                        <input class="form-control" formControlName="num_int" type="text" placeholder="#">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" formControlName="Col" type="text" placeholder="Colonia">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" formControlName="city" type="text" placeholder="Ciudad">
+                    </div>
+                    <div class="col-1">
+                        <input class="form-control" formControlName="cp" type="text" placeholder="Cp">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" formControlName="cru" type="text" placeholder="Cruces">
+                    </div>
+                </div>   
+                <h3>Otros datos</h3>
+                <div class="row align-items-end">
+                    <div class="col-2">
+                        <select name="Iden" class="form-control">
+                            <option value="Ine">INE</option>
+                            <option value="Lic">Licencia</option>
+                            <option value="Pas">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" formControlName="num_ide" type="text" placeholder="N. de indentifiación">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" formControlName="phone" type="text" placeholder="Teléfono">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" formControlName="email" type="text" placeholder="Correo electrónico">
+                    </div>
+                </div>
+            </div>
+      <div class="siguiente">
+        <input routerLink="/pago3" type="button" value="siguiente" id="siguiente"/>
+      </div>
+      <div class="atras">
+        <input type="button" routerLink="" value="Inicio" id="atras"/>
+      </div>
+    </form><!-- // End form -->
+    </div>
+</div>

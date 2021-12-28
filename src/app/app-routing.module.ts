@@ -18,6 +18,11 @@ export const Approutes: Routes = [
     component: FullComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      {
+        path: 'login',
+        loadChildren: () => import('./login/login.component').then(m => m.LoginComponent)
+      },
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
