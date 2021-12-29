@@ -48,7 +48,7 @@ export const Approutes: Routes = [
         component: BusquedaBoletaComponent
       },
       {
-        path: 'datos_empeno',
+        path: 'datos-empeno',
         component: DatosEmpenoComponent
       }
     ]

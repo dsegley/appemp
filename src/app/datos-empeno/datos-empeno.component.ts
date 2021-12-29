@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatosEmpenoComponent implements OnInit {
 
+  id_detalle_prenda = 0
+
   constructor() { }
 
   ngOnInit(): void {
