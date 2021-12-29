@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./datos-empeno.component.scss']
 })
 export class DatosEmpenoComponent implements OnInit {
+  pago: number;
 
-  constructor() { }
+  constructor() {
+    this.pago = 1;
+  }
 
   ngOnInit(): void {
   }
