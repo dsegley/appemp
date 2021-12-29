@@ -13,7 +13,7 @@
             <h4 class="card-title">Datos de empeño</h4>
             <br>
         </div>
-        <div class="container">
+        <div *ngIf="pago == 0" class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-11">
                     <div class="col-8">
@@ -32,6 +32,20 @@
                         <TD>A</TD> <TD>B</TD> <TD>C</TD><TD>D</TD>
                     </TR>
                 </table>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div *ngIf="pago > 0" class="container">
+            <div class="row">
+                <div class="col-md-5 offset-md-10">
+                    <div class="col-4">
+                        <h4>Tu adeudo es de: ${{pago}}</h4>
+                        <input class="form-control" formControlName="num_ide" type="text" placeholder="Monto">
+                        <button class="btn btn-success my-2">Pagar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
