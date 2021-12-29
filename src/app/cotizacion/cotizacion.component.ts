@@ -26,7 +26,8 @@ export class CotizacionComponent implements OnInit {
 
   countOptions = {
     duration: 0.5,
-    prefix: "$"
+    prefix: "$",
+    decimalPlaces: 2
   }
 
   constructor(
