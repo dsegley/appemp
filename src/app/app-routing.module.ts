@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.component';
 import { BusquedaArticuloComponent } from './busqueda-articulo/busqueda-articulo.component';
 import { BusquedaBoletaComponent } from './busqueda-boleta/busqueda-boleta.component';
 import { BusquedaClienteComponent } from './busqueda-cliente/busqueda-cliente.component';
@@ -50,6 +51,11 @@ export const Approutes: Routes = [
       {
         path: 'datos-empeno',
         component: DatosEmpenoComponent
+      }
+      ,
+      {
+        path: 'agregar-cliente',
+        component: AgregarClienteComponent
       }
     ]
   },
