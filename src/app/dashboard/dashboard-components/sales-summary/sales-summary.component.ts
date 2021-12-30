@@ -39,11 +39,11 @@ export class SalesSummaryComponent implements OnInit {
     this.salesChartOptions = {
       series: [
         {
-          name: "Iphone 13",
+          name: "Empeño",
           data: [0, 31, 40, 28, 51, 42, 109, 100],
         },
         {
-          name: "Oneplue 9",
+          name: "almoneda",
           data: [0, 11, 32, 45, 32, 34, 52, 41],
         },
       ],
