@@ -6,7 +6,7 @@
                 <li class="breadcrumb-item"><a href="/busqueda-articulo">Buscar Artículo</a></li>
                 <li class="breadcrumb-item"><a href="/cotizacion/{{id_detalle_prenda}}">Cotización</a></li>
                 <li class="breadcrumb-item"><a href="/busqueda-cliente/">Buscar Cliente</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Confirmación</li>
+                <li class="breadcrumb-item active" aria-current="page">Confirmación</li>        
             </ol>
         </nav>
         <div class="card-title text-center">
@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-4 offset-md-11">
                     <div class="col-8">
-                        <button class="btn btn-success my-2">Aceptar</button>
+                        <button class="btn btn-success my-2" href="/">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -26,10 +26,22 @@
             <div class="table-responsive-sm">
                 <table class="table">
                     <TR>
-                        <TH>Fecha Inicial</TH> <TH>Fecha límite</TH> <TH>Monto de préstamo</TH> <TH>Porcentaje de aforo</TH>
+                        <TH>Folio</TH>
+                        <TH>Fecha Inicial</TH>
+                        <TH>Fecha límite</TH>
+                        <TH>Préstamo</TH>
+                        <TH>Próximo pago</TH>
+                        <TH>Fecha de próximo pago</TH>
+                        <TH>Pendiente</TH>
                     </TR>
                     <TR>
-                        <TD>A</TD> <TD>B</TD> <TD>C</TD><TD>D</TD>
+                        <TD>A</TD>
+                        <TD>B</TD>
+                        <TD>C</TD>
+                        <TD>$0</TD>
+                        <TD>$0</TD>
+                        <TD>F</TD>
+                        <TD>$0</TD>
                     </TR>
                 </table>
             </div>
@@ -40,10 +52,10 @@
         <div *ngIf="pago > 0" class="container">
             <div class="row">
                 <div class="col-md-5 offset-md-10">
-                    <div class="col-4">
+                    <div class="col-5">
                         <h4>Tu adeudo es de: ${{pago}}</h4>
-                        <input class="form-control" formControlName="num_ide" type="text" placeholder="Monto">
-                        <button class="btn btn-success my-2">Pagar</button>
+                        <input class="form-control" formControlName="num_ide" type="number" min="{{pago}}" placeholder="Monto">
+                        <button class="btn btn-success my-2" (click)="pagar()">Pagar</button>
                     </div>
                 </div>
             </div>

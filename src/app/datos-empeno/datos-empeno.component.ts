@@ -11,10 +11,15 @@ export class DatosEmpenoComponent implements OnInit {
   id_detalle_prenda = 0
 
   constructor() {
-    this.pago = 1;
+    this.pago = 100.00;
   }
+
 
   ngOnInit(): void {
   }
 
+  pagar(){
+    alert("Se ha pagado");
+    this.pago=0;
+  }
 }
