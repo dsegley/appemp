@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <!-- title -->
-                <h4 class="card-title">Top Selling</h4>
+                <h4 class="card-title">Top Transactions</h4>
                 <h5 class="card-subtitle">BOLETAS EN EXISTENCIA</h5>
 
         <!-- title -->
@@ -10,10 +10,10 @@
                 <thead>
                     <tr>
                         <th class="text-dark font-medium fs-4">Clientes</th>
-                        <th class="text-dark font-medium fs-4">Garantía</th>
-                        <th class="text-dark font-medium fs-4">Estado</th>
-                        <th class="text-dark font-medium fs-4">Semanas</th>
-                        <th class="text-dark font-medium fs-4">Budget</th>
+                        <th class="text-dark font-medium fs-4">ID Boleta</th>
+                        <th class="text-dark font-medium fs-4">Fecha de Alta</th>
+                        <th class="text-dark font-medium fs-4">Fecha Final</th>
+                        <th class="text-dark font-medium fs-4">Monto Préstamo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,13 +23,14 @@
                                 <img [src]=ts.image alt="user" width="45" class="rounded-circle">
                                 <div class="ms-3">
                                     <h5 class="mb-0 font-medium">{{ts.uname}}</h5>
-                                    <span class="text-muted">{{ts.gmail}}</span>
+                                    <span class="text-muted">{{ts.gmail}}</span><br>
+                                    <label for="exampleFormControlInput1" class="form-label">{{ts.telefono}}</label>
                                 </div>
                             </div>
                         </td>
                         <td class="fs-4">{{ts.productName}}</td>
                         <td>
-                            <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3"></span>
+                            <label for="exampleFormControlInput1" class="form-label">{{ts.status}}</label>
                         </td>
 
                         <td>
