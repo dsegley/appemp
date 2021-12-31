@@ -6,7 +6,7 @@ export interface Product {
     productName: number,
     status: string,
     weeks: string,
-    budget: string,
+    budget: number,
 
 }
 
@@ -20,7 +20,7 @@ export const TopSelling: Product[] = [
         productName: 1,
         status: '25/SEP/2021',
         weeks: '25/JUL/2022',
-        budget: '95K'
+        budget: 1200
     },
     {
         image: 'assets/images/users/user2.jpg',
@@ -30,7 +30,7 @@ export const TopSelling: Product[] = [
         productName: 2 ,
         status: '25/SEP/2021',
         weeks: '25/JUL/2022',
-        budget: '95K'
+        budget: 1000
     },
     {
         image: 'assets/images/users/user3.jpg',
@@ -40,7 +40,7 @@ export const TopSelling: Product[] = [
         productName: 3 ,
         status: '25/SEP/2021',
         weeks: '25/JUL/2022',
-        budget: '95K'
+        budget: 4700
     },
     {
         image: 'assets/images/users/user4.jpg',
@@ -50,7 +50,7 @@ export const TopSelling: Product[] = [
         productName: 4 ,
         status: '25/SEP/2021',
         weeks: '25/JUL/2022',
-        budget: '95K'
+        budget: 2600
     },
 
 ]
