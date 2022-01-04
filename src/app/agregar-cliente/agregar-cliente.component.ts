@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-cliente',
@@ -7,7 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarClienteComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup
+  submited = false
+
+  constructor(private formBuilder: FormBuilder) { 
+    this.form = this.formBuilder.group({
+      nom_1: ['', Validators.required],
+      nom_2: [''],
+      apellido_pat: ['', Validators.required],
+      apellido_mat: ['', Validators.required],
+      edad: ['', Validators.required],
+      numero_ide: ['', Validators.required],
+      id_cat_ide: ['', Validators.required],
+      correo: ['', Validators.required],
+      telefono: ['', Validators.required],
+    })
+  }
 
   ngOnInit(): void {
   }
