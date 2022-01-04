@@ -1,3 +1,14 @@
+<div class="h-100" *ngIf="loading">
+
+  <div class="spinner col">
+
+    <div class="double-bounce1"></div>
+
+    <div class="double-bounce2"></div>
+
+  </div>
+
+</div>
 <div class="card" style="height: 800px">
   <div class="card-body">
     <nav aria-label="breadcrumb">
@@ -72,18 +83,18 @@
           <div class="row">
             <div class="col-md-2">
               <label for="inputZip" class="form-label">C.P.</label>
-              <input type="text" class="form-control" id="inputZip" />
+              <input name="cpIngreso" [(ngModel)]="cpIngreso" type="text" class="form-control" id="inputZip" />
             </div>
             <div class="col-md-2">
               <label for="inputZip" class="form-label">.</label>
               <br />
-              <button class="btn btn-primary" type="button">Buscar</button>
+              <button (click)="buscarCp()" class="btn btn-primary" type="button">Buscar</button>
             </div>
             <div class="col-md-2">
               <label for="inputState" class="form-label">Estado</label>
-              <select id="inputState" class="form-select">
+              <select  id="inputState" class="form-select">
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option *ngFor="let cp of cpResult">{{cp.nom_estado}}</option>
               </select>
               <br />
             </div>
@@ -91,7 +102,7 @@
               <label for="inputCity" class="form-label">Ciudad</label>
               <select id="inputCity" class="form-select">
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option *ngFor="let cp of cpResult">{{cp.nom_entidad}}</option>
               </select>
               <br />
             </div>
@@ -100,7 +111,7 @@
               <label for="inputCol" class="form-label">Colonia</label>
               <select id="inputCol" class="form-select">
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option *ngFor="let cp of cpResult">{{cp.nom_asentamientos}}</option>
               </select>
               <br />
             </div>
