@@ -1,6 +1,51 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Cp } from "../models/cp";
 import { CpService } from "../services/cp/cp.service";
+
+import { NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+
+
+@Component({
+
+  selector: 'ngbd-cp-modal-message',
+
+  template: `
+
+  <div class="modal-header">
+
+    <h4 class="modal-title">Mensaje</h4>
+
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()">
+
+      <span aria-hidden="true">&times;</span>
+
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+
+    <p>El código postal no existe</p>
+
+  </div>
+
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cerrar</button>
+
+  </div>
+
+`
+
+})
+
+export class CpModalMessage {
+
+  constructor(public activeModal: NgbActiveModal) {}
+
+}
 
 @Component({
   selector: "app-agregar-cliente",
@@ -10,8 +55,12 @@ import { CpService } from "../services/cp/cp.service";
 export class AgregarClienteComponent implements OnInit {
   form: FormGroup;
   submited = false;
+  cpIngreso: string = ""
+  loading = false;
 
-  constructor(private formBuilder: FormBuilder, private cpService: CpService) {
+  public cpResult : Cp[] = []
+
+  constructor(private formBuilder: FormBuilder, private cpService: CpService, private modalService: NgbModal) {
     this.form = this.formBuilder.group({
       nom_1: ["", Validators.required],
       nom_2: [""],
@@ -26,8 +75,22 @@ export class AgregarClienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cpService.searchCp("5916").subscribe((data) => {
-      console.log(data);
-    });
+
   }
+  buscarCp(): void{
+    this.loading = true
+    this.cpService.searchCp(this.cpIngreso).subscribe((data) => {
+      this.cpResult=data
+      this.loading = false
+      if (this.cpResult.length == 0){
+this.modalService.open(CpModalMessage,{ariaLabelledBy:'modal-basic-title'})
+
+      }
+    });
+
+
+
+  }
+
+
 }

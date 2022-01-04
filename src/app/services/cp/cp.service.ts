@@ -13,7 +13,7 @@ export class CpService {
   constructor( private httpClient: HttpClient) {  }
 
 public searchCp(query:string) : Observable<any>{
-  const endpoint = this.baseURL + "/v1/cp/?query=" + query
+  const endpoint = this.baseURL + "/cp/?query=" + query
   return this.httpClient.get(endpoint)
 }
 }
