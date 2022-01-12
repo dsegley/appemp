@@ -22,6 +22,7 @@ export class AddClientForm {
         Object.assign(this, init)
     }
 
+    // YE YE MUCHO TEXTO
     public getFormatedClientData(
         tipoDom: string, verEmail: boolean, tipoTel: string, idRefCp: number)
         : Client {
