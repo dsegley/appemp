@@ -14,6 +14,7 @@ export class Boleta {
     id_boleta!: number;
     id_producto_emp!: number;
     id_persona!: number;
+    numero_ide!: string;
     id_cat_stats_bol!: number;
     fecha_alta!: string;
     fecha_fin!: string;

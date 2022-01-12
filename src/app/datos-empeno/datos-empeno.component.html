@@ -6,6 +6,7 @@
 </div>
 <div *ngIf="!loading" class="card" style="height: 800px;">
     <div class="card-body">
+        <app-breadcrumb></app-breadcrumb>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Inicio</a></li>
@@ -18,15 +19,6 @@
         <div class="card-title text-center">
             <h4 class="card-title">Datos de empeño</h4>
             <br>
-        </div>
-        <div *ngIf="!forPayment" class="container">
-            <div class="row">
-                <div class="col-md-4 offset-md-11">
-                    <div class="col-8">
-                        <button class="btn btn-success my-2" href="/">Confirmar</button>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="">
             <ul class="nav nav-tabs">
@@ -112,8 +104,17 @@
                 <div class="col-md-5 offset-md-10">
                     <div class="col-5">
                         <h4>Tu adeudo es de: ${{adeudo}}</h4>
-                        <input class="form-control" name="num_ide" type="number" min="{{10}}" placeholder="Monto">
-                        <button class="btn btn-success my-2" (click)="pagar()">Pagar</button>
+                        <input #monto class="form-control" name="num_ide" type="number" min="{{10}}" placeholder="Monto">
+                        <button class="btn btn-success my-2" (click)="pagar(monto.value)">Pagar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!forPayment" class="container">
+            <div class="row">
+                <div class="col-md-5 offset-md-10">
+                    <div class="col-5">
+                        <button class="btn btn-lg btn-success my-2" (click)="savePledge()">Confirmar</button>
                     </div>
                 </div>
             </div>

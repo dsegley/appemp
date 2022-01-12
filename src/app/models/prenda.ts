@@ -1,6 +1,6 @@
 // Esta clase obtiene los datos del buscador de prendas
 
-export interface DetallePrenda {
+export interface IDetallePrenda {
     id_prenda?: number;
     monto_prestamo?: number;
     id_cat_est_prenda?: number;
@@ -9,7 +9,7 @@ export interface DetallePrenda {
     porc_aforo?: number;
 }
 
-export class Prenda implements DetallePrenda {
+export class Prenda implements IDetallePrenda {
     id_detalle_prenda!: number;
     nom_categoria!: String;
     marca!: String;

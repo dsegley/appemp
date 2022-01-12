@@ -1,0 +1,9 @@
+ <!-- Breadcrum -->
+ <nav aria-label="breadcrumb">
+    <ol *ngFor="let bcElement of bcLoadedData; let last = last" class="breadcrumb">
+        {{bcElement.bc}}
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/busqueda-articulo">Buscar Artículo</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Cotización</li>
+    </ol>
+</nav>

@@ -72,5 +72,7 @@ export class CotizacionComponent implements OnInit {
   saveData() {
     localStorage.setItem("id_detalle_prenda", this.id_detalle_prenda )
     localStorage.setItem("cotizacion_value", String(this.prestamoAprobado))
+    localStorage.setItem("cat_est_prenda", String(this.selectedEstadoPrenda))
+    localStorage.setItem("estado_prenda", this.catEstadoPrenda[this.selectedEstadoPrenda].estado_prenda)
   }
 }

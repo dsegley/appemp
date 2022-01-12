@@ -40,6 +40,6 @@ export class BusquedaClienteComponent implements OnInit {
   }
 
   saveSelectedClient(numero_ide: string) {
-    localStorage.setItem("selectedClientIde", numero_ide)
+    localStorage.setItem("selected_client_ide", numero_ide)
   }
 }

@@ -33,6 +33,7 @@ import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.compo
 import { DatosEmpenoComponent } from './datos-empeno/datos-empeno.component';
 import { ErrorInterceptor } from './services/auth/error.interceptor';
 import { ModalMessageComponent } from './shared/modal-message/modal-message.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -55,6 +56,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AgregarClienteComponent,
     DatosEmpenoComponent,
     ModalMessageComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     CommonModule,

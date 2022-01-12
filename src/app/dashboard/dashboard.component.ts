@@ -11,5 +11,11 @@ export class DashboardComponent implements AfterViewInit {
     this.subtitle = 'This is some text within a card block.';
   }
 
-  ngAfterViewInit() { }
+  ngAfterViewInit() { 
+    const user = localStorage.getItem("user")
+    localStorage.clear()
+    if (user) {
+      localStorage.setItem("user", user)
+    }
+  }
 }

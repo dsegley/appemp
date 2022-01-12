@@ -7,6 +7,8 @@ import { ModalMessageComponent } from '../shared/modal-message/modal-message.com
 import { Boleta } from '../models/boleta';
 import { PaymentService } from '../services/payment/payment.service';
 import { Payment } from '../models/pago';
+import { PrendaService } from '../services/prenda/prenda.service';
+import * as moment from 'moment';
 
 
 enum PageTabs {
@@ -22,7 +24,6 @@ enum PageTabs {
 })
 export class DatosEmpenoComponent implements OnInit {
 
-  id_detalle_prenda = 0
   forPayment = false
   datosBoleta: Boleta = new Boleta()
   loading = true
@@ -38,11 +39,13 @@ export class DatosEmpenoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private boletaService: BoletaService,
     private paymentService: PaymentService,
+    private prendaService: PrendaService,
   ) {
 
   }
 
   ngOnInit(): void {
+    this.loading = true
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('boleta')
       if (id) {
@@ -51,29 +54,49 @@ export class DatosEmpenoComponent implements OnInit {
           this.datosBoleta = data
           this.forPayment = true
           // obtener registro de pagos
-          this.paymentService.getRegistroPagos(this.datosBoleta.id_boleta).subscribe(data => {
-            this.registroPagos = data
+          this.paymentService.getRegistroPagos(this.datosBoleta.id_boleta).subscribe({
+            next: (data) => {
+              this.registroPagos = data
             
-            // sumar registros de pago
-            this.registroPagos.forEach(item => {
-              this.pagoTotal += item.monto;
-            })
-            this.adeudo = this.datosBoleta.mont_prest_total - this.pagoTotal
-            this.loading = false
+              // sumar registros de pago
+              this.registroPagos.forEach(item => {
+                this.pagoTotal += item.monto;
+              })
+              this.adeudo = this.datosBoleta.mont_prest_total - this.pagoTotal
+              this.loading = false
+            },
+            error: (error) => {
+              if (error === "NOT FOUND") {
+                // El backend retorna 404
+                this.adeudo = this.datosBoleta.mont_prest_total
+                this.loading = false 
+              }
+            }
           })
         })
       }
 
       else {
-        // mostrar datos de prod empeno(confirmazion)
+        // mostrar datos de prod empeno(confirmacion)
         let cotizacion = localStorage.getItem('cotizacion_value')
 
         if (cotizacion) {
           this.pledgeService.getDatosEmpeno(1, [+cotizacion]).subscribe(data => {
-            this.loading = false
             this.datosBoleta = data
-            // ???
             this.datosBoleta.mont_prest_total = data['monto_prestamo_total']
+            const id_detalle_prenda = localStorage.getItem("id_detalle_prenda")
+            const estado_prenda = localStorage.getItem("estado_prenda")
+            const cat_est_prenda = localStorage.getItem('cat_est_prenda')
+
+            if (id_detalle_prenda && estado_prenda && cat_est_prenda) {
+              this.prendaService.getItemDetail(+id_detalle_prenda).subscribe(item_data => {  
+                item_data[0].estado_prenda = estado_prenda
+                item_data[0].monto_prestamo = cotizacion
+                item_data[0].id_cat_est_prenda = cat_est_prenda
+                this.loading = false
+                this.datosBoleta.prendas = item_data
+              })
+            }
           })
         }
       }
@@ -91,10 +114,70 @@ export class DatosEmpenoComponent implements OnInit {
   }
 
   savePledge() {
-    
+
+    const client_ide = localStorage.getItem("selected_client_ide")
+    if (client_ide) {
+      this.datosBoleta.fecha_alta = moment(
+       new Date(this.datosBoleta.fecha_alta), "DD MM YYYY", true
+      ).utc().format()
+      this.datosBoleta.fecha_fin = moment(
+        new Date(this.datosBoleta.fecha_fin), "DD MM YYYY", true
+      ).utc().format()
+      this.datosBoleta.numero_ide = client_ide
+      console.log(this.datosBoleta)
+
+      this.pledgeService.addEmpeno(this.datosBoleta).subscribe({
+        next: () => {
+          this.showModal("Datos registrados con exito.")
+          this.router.navigateByUrl("/")
+        },
+        error: (err) => {
+          this.showModal("Ha ocurrido un error.")
+          console.error(err);
+        }
+      })
+    }
   }
 
-  pagar() {
+  pagar(monto: number) {
+    if (monto > 0) {
+      let payment = new Payment()
+      payment.monto = monto
+      payment.fecha_pago = moment().utc().format()
+      payment.id_boleta = this.datosBoleta.id_boleta
 
+      const refrendo = this.datosBoleta.mont_prest_total * this.datosBoleta.tasa_interes
+
+      if (monto > refrendo) {
+        payment.id_cat_stats_pago = 2 // capital
+      }
+
+      else if (monto === refrendo) {
+        payment.id_cat_stats_pago = 1 // refrendo
+      }
+
+      else {
+        payment.id_cat_stats_pago = 3 // ??
+      }
+
+      // refrendo + capital? Cuando?
+
+      this.paymentService.addPayment(payment).subscribe({
+        next: (data) => {
+          this.showModal("Pago registrado con exito")
+          this.ngOnInit()
+        },
+        error: () =>{
+          this.showModal("Ah ocurrido un error")
+        }
+      })
+    }
+  }
+
+  private showModal(message: string) {
+    const activeModal = this.modalService.open(ModalMessageComponent, { 
+      ariaLabelledBy: 'modal-basic-title' 
+    })
+    activeModal.componentInstance.message = message
   }
 }

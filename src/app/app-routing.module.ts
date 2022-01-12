@@ -37,6 +37,10 @@ export const Approutes: Routes = [
         loadChildren: () => import('./cotizacion/cotizacion.module').then(m => m.CotizacionModule)
       },
       {
+        path: 'cotizacion',
+        loadChildren: () => import('./cotizacion/cotizacion.module').then(m => m.CotizacionModule)
+      },
+      {
         path: 'busqueda-articulo',
         component: BusquedaArticuloComponent
       },

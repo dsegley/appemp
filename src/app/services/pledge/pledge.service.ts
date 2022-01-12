@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DatosEmp } from '../../models/datos_emp';
 import { Observable } from 'rxjs';
 import { API_SERVER_IP, API_SERVER_PORT } from '../../globals';
+import { Boleta } from '../../models/boleta';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,8 @@ export class PledgeService {
     return this.httpClient.get(endpoint)
   }
 
-  addEmpeno(datosEmp: DatosEmp): Observable<any> {
+  addEmpeno(new_pledge: Boleta): Observable<any> {
     const endpoint = this.baseURL + "pledge";
-    return this.httpClient.post(endpoint, datosEmp)
+    return this.httpClient.post(endpoint, new_pledge)
   }
 }

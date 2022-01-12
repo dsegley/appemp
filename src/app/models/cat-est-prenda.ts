@@ -4,6 +4,6 @@
 
  export class CatEstPrenda {
     id_cat_est_prenda!: number;
-    estado_prenda!: String;
+    estado_prenda!: string;
     porc_aforo!: number;
 }
