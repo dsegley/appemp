@@ -49,18 +49,22 @@ export const Approutes: Routes = [
         component: BusquedaBoletaComponent
       },
       {
-        path: 'datos-empeno',
+        path: 'datos-empeno/:boleta',
         component: DatosEmpenoComponent
       }
       ,
       {
         path: 'agregar-cliente',
         component: AgregarClienteComponent
+      },
+      {
+        path: 'datos-empeno',
+        component: DatosEmpenoComponent
       }
     ]
   },
   {
     path: '**',
-    redirectTo: '/starter'
+    redirectTo: 'dashboard'
   }
 ];

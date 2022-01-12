@@ -19,13 +19,13 @@
         "url": "http://localhost:4200/dashboard",
         "webRoot": "${workspaceFolder}"
       },
-        {
-            "type": "firefox",
-            "reAttach": true,
-            "request": "launch",
-            "name": "Launch Firefox against localhost",
-            "url": "http://localhost:4200/dashboard",
-            "webRoot": "${workspaceFolder}"
-        }
+      {
+          "type": "firefox",
+          "reAttach": true,
+          "request": "launch",
+          "name": "Launch Firefox against localhost",
+          "url": "http://localhost:4200/dashboard",
+          "webRoot": "${workspaceFolder}",
+      }
     ]
 }

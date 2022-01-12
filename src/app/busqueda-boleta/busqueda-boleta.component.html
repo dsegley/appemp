@@ -49,7 +49,7 @@
                  <td>{{item.nombre_completo}}</td>
                  <td class="es-datetime">{{item.fecha_alta | date: 'fullDate':'UTC':'es'}}</td>
                  <td class="es-datetime">{{item.fecha_fin | date: 'fullDate':'UTC':'es'}}</td>
-                 <th><a class="btn btn-outline-success btn-sm">Seleccionar</a></th>
+                 <th><a [routerLink]="['/datos-empeno', item.id_boleta]" class="btn btn-outline-success btn-sm">Seleccionar</a></th>
                </tr>
              </tbody>
            </table>

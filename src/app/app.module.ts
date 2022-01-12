@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.component';
 import { DatosEmpenoComponent } from './datos-empeno/datos-empeno.component';
 import { ErrorInterceptor } from './services/auth/error.interceptor';
+import { ModalMessageComponent } from './shared/modal-message/modal-message.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -53,6 +54,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoginComponent,
     AgregarClienteComponent,
     DatosEmpenoComponent,
+    ModalMessageComponent,
   ],
   imports: [
     CommonModule,

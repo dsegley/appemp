@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_SERVER_IP, API_SERVER_PORT } from '../../globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrendaService {
 
-  private baseURL = "http://10.60.63.100:5000/v1/" 
+  private readonly baseURL = "http://" + API_SERVER_IP + ":" + API_SERVER_PORT + "/v1/"
 
   constructor(private httpClient: HttpClient) { }
 

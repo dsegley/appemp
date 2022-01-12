@@ -52,7 +52,7 @@
                   <td>{{i + 1}}</td>
                   <td>{{item.numero_ide}}</td>
                   <td>{{item.nombre_completo}}</td>
-                  <th><a routerLink="/datos-empeno" class="btn btn-outline-success btn-sm">Seleccionar</a></th>
+                  <th><a (click)="saveSelectedClient(item.numero_ide)" routerLink="/datos-empeno" class="btn btn-outline-success btn-sm">Seleccionar</a></th>
                 </tr>
               </tbody>
             </table>

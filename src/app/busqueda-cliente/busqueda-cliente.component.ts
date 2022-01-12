@@ -38,4 +38,8 @@ export class BusquedaClienteComponent implements OnInit {
       this.loading = false
     })
   }
+
+  saveSelectedClient(numero_ide: string) {
+    localStorage.setItem("selectedClientIde", numero_ide)
+  }
 }

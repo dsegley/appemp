@@ -70,7 +70,7 @@ export class CotizacionComponent implements OnInit {
   }
 
   saveData() {
-    sessionStorage.setItem("id_detalle_prenda", this.id_detalle_prenda )
-    sessionStorage.setItem("cotizacion_value", String(this.prestamoAprobado) )
+    localStorage.setItem("id_detalle_prenda", this.id_detalle_prenda )
+    localStorage.setItem("cotizacion_value", String(this.prestamoAprobado))
   }
 }

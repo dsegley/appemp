@@ -1,60 +1,118 @@
-<div class="card" style="height: 600px;">
+<div class="h-100" *ngIf="loading">
+    <div class="spinner col">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+</div>
+<div *ngIf="!loading" class="card" style="height: 800px;">
     <div class="card-body">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="/busqueda-articulo">Buscar Artículo</a></li>
-                <li class="breadcrumb-item"><a href="/cotizacion/{{id_detalle_prenda}}">Cotización</a></li>
-                <li class="breadcrumb-item"><a href="/busqueda-cliente/">Buscar Cliente</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Confirmación</li>        
+                <li *ngIf="!forPayment" class="breadcrumb-item"><a href="/busqueda-articulo">Buscar Artículo</a></li>
+                <li *ngIf="!forPayment" class="breadcrumb-item"><a href="/cotizacion/{{id_detalle_prenda}}">Cotización</a></li>
+                <li *ngIf="!forPayment" class="breadcrumb-item"><a href="/busqueda-cliente/">Buscar Cliente</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Datos de empeño</li>        
             </ol>
         </nav>
         <div class="card-title text-center">
             <h4 class="card-title">Datos de empeño</h4>
             <br>
         </div>
-        <div *ngIf="pago == 0" class="container">
+        <div *ngIf="!forPayment" class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-11">
                     <div class="col-8">
-                        <button class="btn btn-success my-2" href="/">Aceptar</button>
+                        <button class="btn btn-success my-2" href="/">Confirmar</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="form-control">
-            <div class="table-responsive-sm">
-                <table class="table">
-                    <TR>
-                        <TH>Folio</TH>
-                        <TH>Fecha Inicial</TH>
-                        <TH>Fecha límite</TH>
-                        <TH>Préstamo</TH>
-                        <TH>Próximo pago</TH>
-                        <TH>Fecha de próximo pago</TH>
-                        <TH>Pendiente</TH>
-                    </TR>
-                    <TR>
-                        <TD>A</TD>
-                        <TD>B</TD>
-                        <TD>C</TD>
-                        <TD>$0</TD>
-                        <TD>$0</TD>
-                        <TD>F</TD>
-                        <TD>$0</TD>
-                    </TR>
+        <div class="">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a *ngIf="currentTab === 1" (click)="switchTabs()" class="nav-link" aria-current="page">Boleta</a>
+                  <a *ngIf="currentTab === 0" class="nav-link active" aria-current="page" >Boleta</a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="currentTab === 0" (click)="switchTabs()" class="nav-link" aria-current="page">Pagos</a>
+                    <a *ngIf="currentTab === 1" class="nav-link active" aria-current="page">Pagos</a>
+                </li>
+              </ul>
+            <div *ngIf="currentTab === 0">
+                <div class="mt-3 table-responsive-sm">
+                    <table class="table">
+                        <TR>
+                            <TH>Prestamo Total</TH>
+                            <TH>Fecha Inicial</TH>
+                            <TH>Fecha límite</TH>
+                            <TH>Tasa de interés</TH>
+                            <TH>Periodo</TH>
+                        </TR>
+                        <TR>
+                            <TD>${{datosBoleta.mont_prest_total}}</TD>
+                            <TD>{{datosBoleta.fecha_alta | date: 'fullDate':'UTC':'es'}}</TD>
+                            <TD>{{datosBoleta.fecha_fin | date: 'fullDate':'UTC':'es'}}</TD>
+                            <TD>{{datosBoleta.tasa_interes * 100}}%</TD>
+                            <TD>{{datosBoleta.periodo}}</TD>
+                        </TR>
+                    </table>
+                </div>
+                <ngb-accordion class="mt-5">
+                    <ngb-panel *ngFor="let item of datosBoleta.prendas; let i = index" title="Prenda #{{i + 1}}">
+                        <ng-template ngbPanelContent>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Estado</th>
+                                    <th>Monto de prestamo</th>
+                                </tr>
+                                <tr>
+                                    <td>{{item.nom_categoria}}</td>
+                                    <td>{{item.marca}}</td>
+                                    <td>{{item.modelo}}</td>
+                                    <td>{{item.estado_prenda}}</td>
+                                    <td>${{item.monto_prestamo}}</td>
+                                </tr>
+                            </table>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+            <div *ngIf="currentTab === 1">
+                <div *ngIf="registroPagos.length == 0" class="row justify-content-md-center mt-2">
+                    <div class="col-8 alert alert-warning" role="alert">
+                      Aun no hay registros de pagos
+                    </div>
+                </div>
+                <table class="table" *ngIf="registroPagos.length > 0">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Monto</th>
+                    </tr>
+                    <tr *ngFor="let item of registroPagos; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{item.fecha_pago | date: 'fullDate':'UTC':'es'}}</td>
+                        <td>{{item.nom_stats_pago}}</td>
+                        <td>${{item.monto}}</td>
+                    </tr>
                 </table>
+                <h2 *ngIf="forPayment" class="text-end">Total: ${{pagoTotal}}</h2>
             </div>
         </div>
         <br>
         <br>
         <br>
-        <div *ngIf="pago > 0" class="container">
+        <div *ngIf="forPayment == true" class="container">
             <div class="row">
                 <div class="col-md-5 offset-md-10">
                     <div class="col-5">
-                        <h4>Tu adeudo es de: ${{pago}}</h4>
-                        <input class="form-control" formControlName="num_ide" type="number" min="{{pago}}" placeholder="Monto">
+                        <h4>Tu adeudo es de: ${{adeudo}}</h4>
+                        <input class="form-control" name="num_ide" type="number" min="{{10}}" placeholder="Monto">
                         <button class="btn btn-success my-2" (click)="pagar()">Pagar</button>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { API_SERVER_IP, API_SERVER_PORT } from '../../globals';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../models/user';
@@ -10,7 +11,7 @@ import { User } from '../../models/user';
 })
 export class AuthService {
 
-  private baseURL = "http://10.60.63.100:5000/v1/"
+  private baseURL = "http://" + API_SERVER_IP + ":" + API_SERVER_PORT + "/v1/"
   private userSubject: BehaviorSubject<any>
   public user: Observable<User> 
 
