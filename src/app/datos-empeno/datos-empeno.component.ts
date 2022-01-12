@@ -62,7 +62,10 @@ export class DatosEmpenoComponent implements OnInit {
               this.registroPagos.forEach(item => {
                 this.pagoTotal += item.monto;
               })
-              this.adeudo = this.datosBoleta.mont_prest_total - this.pagoTotal
+              this.adeudo = +this.datosBoleta.mont_prest_total - this.pagoTotal
+              if (this.adeudo < 0) {
+                this.adeudo = 0
+              }
               this.loading = false
             },
             error: (error) => {
@@ -127,9 +130,9 @@ export class DatosEmpenoComponent implements OnInit {
       console.log(this.datosBoleta)
 
       this.pledgeService.addEmpeno(this.datosBoleta).subscribe({
-        next: () => {
+        next: (data) => {
           this.showModal("Datos registrados con exito.")
-          this.router.navigateByUrl("/")
+          this.router.navigateByUrl("/datos-empeno/" + data.id_boleta)
         },
         error: (err) => {
           this.showModal("Ha ocurrido un error.")
@@ -161,6 +164,7 @@ export class DatosEmpenoComponent implements OnInit {
       }
 
       // refrendo + capital? Cuando?
+      // TODO: cambiar el estado de la boleta
 
       this.paymentService.addPayment(payment).subscribe({
         next: (data) => {

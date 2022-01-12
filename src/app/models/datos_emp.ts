@@ -1,8 +1,8 @@
 /** Datos para registrar un empeño */
 
 export class EmpPrendasStats {
-    constructor(id_detalle_prenda: number,
-                id_cat_est_prenda: number) {
+    constructor(public id_detalle_prenda: number,
+                public id_cat_est_prenda: number) {
     }
     
 }
