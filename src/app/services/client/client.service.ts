@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Client } from '../../models/client';
 import { Observable } from 'rxjs';
-import { API_SERVER_IP, API_SERVER_PORT } from '../../globals';
+import { API_SERVER_BASE_URL } from '../../globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
 
-  private baseURL = "http://" + API_SERVER_IP + ":" + API_SERVER_PORT + "/v1/"
+  private baseURL = API_SERVER_BASE_URL
 
   constructor(private httpClient: HttpClient) { }
 

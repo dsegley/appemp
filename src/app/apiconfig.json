@@ -1,0 +1,10 @@
+{ 
+    "current_setting": "david",
+    "settings": {
+        "david": {
+            "host": "10.60.63.100",
+            "port": "5000",
+            "default_ver": "v1"
+        }
+    }
+}

@@ -8,7 +8,7 @@ import { Boleta } from '../models/boleta';
 import { PaymentService } from '../services/payment/payment.service';
 import { Payment } from '../models/pago';
 import { PrendaService } from '../services/prenda/prenda.service';
-import * as moment from 'moment';
+import moment from 'moment';
 
 
 enum PageTabs {
