@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { API_SERVER_IP, API_SERVER_PORT } from '../../globals';
+import { API_SERVER_BASE_URL } from '../../globals';
 import { Boleta } from '../../models/boleta';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Boleta } from '../../models/boleta';
 })
 export class PledgeService {
 
-  private readonly baseURL = "http://" + API_SERVER_IP + ":" + API_SERVER_PORT + "/v1/"
+  private readonly baseURL = API_SERVER_BASE_URL
 
   constructor(private httpClient: HttpClient) { }
 
