@@ -4,6 +4,7 @@ import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.compo
 import { BusquedaArticuloComponent } from './busqueda-articulo/busqueda-articulo.component';
 import { BusquedaBoletaComponent } from './busqueda-boleta/busqueda-boleta.component';
 import { BusquedaClienteComponent } from './busqueda-cliente/busqueda-cliente.component';
+import { ClientsComponent } from './clients/clients.component';
 import { DatosEmpenoComponent } from './datos-empeno/datos-empeno.component';
 
 import { FullComponent } from './layouts/full/full.component';
@@ -64,6 +65,10 @@ export const Approutes: Routes = [
       {
         path: 'datos-empeno',
         component: DatosEmpenoComponent
+      },
+      {
+        path: 'clientes',
+        component: ClientsComponent
       }
     ]
   },

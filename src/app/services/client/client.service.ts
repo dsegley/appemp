@@ -30,4 +30,10 @@ export class ClientService {
     const endpoint = this.baseURL + 'cat_ide'
     return this.httpClient.get(endpoint)
   }
+
+  /** Retorna una lista con todos los clientes */
+  public getAllClients(): Observable<any> {
+    const endpoint = this.baseURL + 'client_list'
+    return this.httpClient.get(endpoint)
+  }
 }

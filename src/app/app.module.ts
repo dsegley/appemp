@@ -34,6 +34,8 @@ import { DatosEmpenoComponent } from './datos-empeno/datos-empeno.component';
 import { ErrorInterceptor } from './services/auth/error.interceptor';
 import { ModalMessageComponent } from './shared/modal-message/modal-message.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { ClientsComponent } from './clients/clients.component';
+import { DataTablesModule } from "angular-datatables";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -57,6 +59,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DatosEmpenoComponent,
     ModalMessageComponent,
     BreadcrumbComponent,
+    ClientsComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +73,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
     PerfectScrollbarModule,
     CountUpModule,
+    DataTablesModule,
   ],
   providers: [
     {
