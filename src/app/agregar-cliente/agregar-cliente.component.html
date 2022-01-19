@@ -134,11 +134,13 @@
             <br />
             <div class="row align-items-end">
               <div class="col-2">
+                <label for="inputZip" class="form-label">Tipo de Identificación</label>
                 <select formControlName="id_cat_ide" class="form-select">
                   <option *ngFor="let ide of id_cat_ide" value="{{ide.id_cat_ide}}">{{ide.nom_ide}}</option>
                 </select>
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Núm. de Identificación</label>
                 <input
                   class="form-control"
                   name="num_ide"
@@ -149,6 +151,7 @@
                 />
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Teléfono</label>
                 <input
                   class="form-control"
                   name="phone"
@@ -160,6 +163,7 @@
                 />
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Correo Electrónico</label>
                 <input
                   class="form-control"
                   name="email"
@@ -172,6 +176,7 @@
             <br />
             <div class="row mt-3 align-items-center">
               <div class="col">
+                <label for="inputZip" class="form-label">Calle</label>
                 <input
                   class="form-control"
                   name="nom_direccion"
@@ -182,6 +187,7 @@
                 />
               </div>
               <div class="col-2">
+                <label for="inputZip" class="form-label">Núm. Exterior</label>
                 <input
                   class="form-control"
                   name="num_ext"
@@ -192,6 +198,7 @@
                 />
               </div>
               <div class="col-2">
+                <label for="inputZip" class="form-label">Núm. Interior</label>
                 <input
                   class="form-control"
                   name="num_int"
@@ -202,6 +209,7 @@
                 />
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Cruzamientos</label>
                 <input
                   class="form-control"
                   name="cru"
