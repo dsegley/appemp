@@ -60,7 +60,6 @@ export class AgregarClienteComponent implements OnInit {
         ]],
       nom_2: ["",
         [
-          Validators.pattern('[a-zA-Z]'),
         ]],
       apellido_pat: ["",
         [
