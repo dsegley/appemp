@@ -143,7 +143,25 @@ export class DatosEmpenoComponent implements OnInit {
   }
 
   pagar(monto: number) {
+
+    // boleta desempeñada
+    if (this.datosBoleta.id_cat_stats_bol == 2) { 
+      this.showModal("La boleta ya fue desempeñada")
+      return
+    }
+
+    // comparar la fecha
+    const today = moment().utc()
+    const final =  moment(new Date(this.datosBoleta.fecha_fin), "DD MM YYYY", true).utc()
+    if (today > final || this.datosBoleta.id_cat_stats_bol == 3) {
+      this.showModal("La boleta ya esta vencida")
+      return
+    }
+
+    monto = Math.min(monto, this.adeudo)
+
     if (monto > 0) {
+
       let payment = new Payment()
       payment.monto = monto
       payment.fecha_pago = moment().utc().format()
@@ -164,8 +182,7 @@ export class DatosEmpenoComponent implements OnInit {
       }
 
       // refrendo + capital? Cuando?
-      // TODO: cambiar el estado de la boleta
-
+    
       this.paymentService.addPayment(payment).subscribe({
         next: (data) => {
           this.showModal("Pago registrado con exito")
@@ -174,6 +191,13 @@ export class DatosEmpenoComponent implements OnInit {
         error: () =>{
           this.showModal("Ah ocurrido un error")
         }
+      })
+    }
+
+    if (this.pagoTotal + monto >= this.datosBoleta.mont_prest_total) {
+      // cambiar el estado de la boleta a desempeñada
+      this.boletaService.updateStatusBoleta(this.datosBoleta.id_boleta, 2).subscribe(response => {
+
       })
     }
   }
