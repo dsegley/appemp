@@ -40,6 +40,7 @@
                             <TH>Fecha límite</TH>
                             <TH>Tasa de interés</TH>
                             <TH>Periodo</TH>
+                            <th>Estado</th>
                         </TR>
                         <TR>
                             <TD>${{datosBoleta.mont_prest_total}}</TD>
@@ -47,6 +48,7 @@
                             <TD>{{datosBoleta.fecha_fin | date: 'fullDate':'UTC':'es'}}</TD>
                             <TD>{{datosBoleta.tasa_interes * 100}}%</TD>
                             <TD>{{datosBoleta.periodo}}</TD>
+                            <TD>{{datosBoleta.nom_stats_bol}}</TD>
                         </TR>
                     </table>
                 </div>
