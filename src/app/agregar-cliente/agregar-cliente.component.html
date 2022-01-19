@@ -77,7 +77,7 @@
               formControlName="apellido_mat"
             />
           </div>
-          <div class="col-1">
+          <div class="col">
             <input
               class="form-control"
               requiredminlength="2"
@@ -85,6 +85,8 @@
               name="edad"
               pattern="[0-9]+"
               type="number"
+              min="18"
+              max="99"
               placeholder="Edad"
               formControlName="edad"
             />
@@ -150,6 +152,8 @@
                   type="text"
                   placeholder="Teléfono"
                   pattern="[0-9]+"
+                  requiredminlength="10"
+                  maxlength="10"
                   formControlName="telefono"
                   minlength="10"
                 />
