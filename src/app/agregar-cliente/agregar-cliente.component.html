@@ -110,14 +110,14 @@
             </div>
             <div class="col-md-2">
               <label for="inputState" class="form-label">Estado</label>
-              <select id="inputState" class="form-select" disabled>
+              <select id="inputState" class="form-select">
                 <option *ngFor="let cp of cpResult" value="{{cp.id_estado}}">{{cp.nom_estado}}</option>
               </select>
               <br />
             </div>
             <div class="col-md-2">
               <label for="inputCity" class="form-label">Municipio</label>
-              <select id="inputCity" class="form-select" disabled>
+              <select id="inputCity" class="form-select">
                 <option *ngFor="let cp of cpResult">{{cp.nom_entidad}}</option>
               </select>
               <br />
