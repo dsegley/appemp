@@ -1,5 +1,9 @@
 <div class="h-100" *ngIf="loading">
-
+  <style>
+    input:invalid {
+      border: 2px dashed red;
+    }
+  </style>
   <div class="spinner col">
 
     <div class="double-bounce1"></div>
@@ -29,7 +33,7 @@
           <br />
           <h3>Datos del cliente</h3>
           <div class="col">
-            <label for="inputZip" class="form-label">Nombre</label>
+            <label for="inputZip" class="form-label">Nombre *</label>
             <div class="form-group">
               <input
               class="form-control"
@@ -60,7 +64,7 @@
             />
           </div>
           <div class="col">
-            <label for="inputZip" class="form-label">Apellido Paterno</label>
+            <label for="inputZip" class="form-label">Apellido Paterno *</label>
             <input
               class="form-control"
               name="apellido_pat"
@@ -68,10 +72,11 @@
               pattern="[A-Za-z]+"
               placeholder="Apellido Paterno"
               formControlName="apellido_pat"
+              required
             />
           </div>
           <div class="col">
-            <label for="inputZip" class="form-label">Apellido Materno</label>
+            <label for="inputZip" class="form-label">Apellido Materno *</label>
             <input
               class="form-control"
               name="apellido_mat"
@@ -79,11 +84,12 @@
               pattern="[A-Za-z]+"
               placeholder="Apellido Materno"
               formControlName="apellido_mat"
+              required
             />
           </div>
 
           <div class="col-2">
-            <label for="inputZip" class="form-label">Edad</label>
+            <label for="inputZip" class="form-label">Edad *</label>
             <input
               class="form-control"
               requiredminlength="2"
@@ -95,6 +101,7 @@
               max="99"
               placeholder="Edad"
               formControlName="edad"
+              required
             />
           </div>
         </div>
@@ -102,23 +109,23 @@
         <br />
         <h3>Dirección</h3>
           <div class="row">
-            <div class="col-md-2">
-              <label for="inputZip" class="form-label">C.P.</label>
+            <div class="col">
+              <label for="inputZip" class="form-label" required>C.P. *</label>
               <input formControlName="cpIngreso" type="text" class="form-control" id="inputZip" />
             </div>
-            <div class="col-md-2">
+            <div class="col">
               <label for="inputZip" class="form-label">.</label>
               <br />
               <button (click)="buscarCp()" class="btn btn-primary" type="button">Buscar</button>
             </div>
-            <div class="col-md-2">
+            <div [style.display]="showCam ? 'none' : 'yes'" class="col-md-3">
               <label for="inputState" class="form-label">Estado</label>
-              <select id="inputState" class="form-select">
+              <select  id="inputState" class="form-select">
                 <option *ngFor="let cp of cpResult" value="{{cp.id_estado}}">{{cp.nom_estado}}</option>
               </select>
               <br />
             </div>
-            <div class="col-md-2">
+            <div [style.display]="showCam ? 'none' : 'yes'" class="col-md-3">
               <label for="inputCity" class="form-label">Municipio</label>
               <select id="inputCity" class="form-select">
                 <option *ngFor="let cp of cpResult">{{cp.nom_entidad}}</option>
@@ -126,7 +133,7 @@
               <br />
             </div>
 
-            <div class="col-md-2">
+            <div [style.display]="showCam ? 'none' : 'yes'" class="col-md-3">
               <label for="inputCol" class="form-label">Nombre de Entidad</label>
               <select id="inputCol" class="form-select">
                 <option *ngFor="let cp of cpResult">{{cp.nom_asentamientos}}</option>
@@ -137,13 +144,13 @@
             <br />
             <div class="row align-items-end">
               <div class="col-2">
-                <label for="inputZip" class="form-label">Tipo de Identificación</label>
+                <label for="inputZip" class="form-label">Tipo de Identificación *</label>
                 <select formControlName="id_cat_ide" class="form-select">
                   <option *ngFor="let ide of id_cat_ide" value="{{ide.id_cat_ide}}">{{ide.nom_ide}}</option>
                 </select>
               </div>
               <div class="col">
-                <label for="inputZip" class="form-label">Núm. de Identificación</label>
+                <label for="inputZip" class="form-label">Núm. de Identificación *</label>
                 <input
                   class="form-control"
                   name="num_ide"
@@ -151,10 +158,11 @@
                   placeholder="N. de indentifiación"
                   pattern="[A-Za-z0-9]+"
                   formControlName="numero_ide"
+                  required
                 />
               </div>
               <div class="col">
-                <label for="inputZip" class="form-label">Teléfono</label>
+                <label for="inputZip" class="form-label">Teléfono *</label>
                 <input
                   class="form-control"
                   name="phone"
@@ -165,23 +173,25 @@
                   maxlength="10"
                   formControlName="telefono"
                   minlength="10"
+                  required
                 />
               </div>
               <div class="col">
-                <label for="inputZip" class="form-label">Correo Electrónico</label>
+                <label for="inputZip" class="form-label">Correo Electrónico *</label>
                 <input
                   class="form-control"
                   name="email"
                   type="text"
                   placeholder="Correo electrónico"
                   formControlName="correo"
+                  required
                 />
               </div>
             </div>
             <br />
             <div class="row mt-3 align-items-center">
               <div class="col">
-                <label for="inputZip" class="form-label">Calle</label>
+                <label for="inputZip" class="form-label">Calle *</label>
                 <input
                   class="form-control"
                   name="nom_direccion"
@@ -189,10 +199,11 @@
                   placeholder="Calle"
                   pattern="[A-Za-z0-9]+"
                   formControlName="calle"
+                  required
                 />
               </div>
               <div class="col-2">
-                <label for="inputZip" class="form-label">Núm. Exterior</label>
+                <label for="inputZip" class="form-label">Núm. Exterior *</label>
                 <input
                   class="form-control"
                   name="num_ext"
@@ -200,6 +211,7 @@
                   placeholder="Núm.Ext."
                   pattern="[0-9]+"
                   formControlName="no_ext"
+                  required
                 />
               </div>
               <div class="col-2">

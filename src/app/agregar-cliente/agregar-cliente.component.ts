@@ -42,6 +42,7 @@ export class AgregarClienteComponent implements OnInit {
   submited = false;
   cpIngreso: string = ""
   loading = false;
+  showCam = true;
 
   cpResult: Cp[] = []
   id_cat_ide: CatIde[] = []
@@ -122,6 +123,7 @@ export class AgregarClienteComponent implements OnInit {
     this.cpService.searchCp(this.cpIngreso).subscribe((data) => {
       this.cpResult = data
       this.loading = false
+      this.showCam = false
       if (this.cpResult.length == 0) {
         this.showModal("El codigo ingresado postal no existe")
       }
