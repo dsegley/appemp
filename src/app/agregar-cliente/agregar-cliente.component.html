@@ -29,6 +29,7 @@
           <br />
           <h3>Datos del cliente</h3>
           <div class="col">
+            <label for="inputZip" class="form-label">Nombre</label>
             <div class="form-group">
               <input
               class="form-control"
@@ -40,7 +41,7 @@
               name="nom_1"
               type="text"
               placeholder="Primer nombre"
-              formControlName="nom_1" 
+              formControlName="nom_1"
               >
             <div class="invalid-feedback">
               Please choose a username.
@@ -48,6 +49,7 @@
           </div>
           </div>
           <div class="col">
+            <label for="inputZip" class="form-label">Segundo Nombre</label>
             <input
               class="form-control"
               name="nom_2"
@@ -58,6 +60,7 @@
             />
           </div>
           <div class="col">
+            <label for="inputZip" class="form-label">Apellido Paterno</label>
             <input
               class="form-control"
               name="apellido_pat"
@@ -68,6 +71,7 @@
             />
           </div>
           <div class="col">
+            <label for="inputZip" class="form-label">Apellido Materno</label>
             <input
               class="form-control"
               name="apellido_mat"
@@ -77,7 +81,9 @@
               formControlName="apellido_mat"
             />
           </div>
-          <div class="col-1">
+
+          <div class="col-2">
+            <label for="inputZip" class="form-label">Edades</label>
             <input
               class="form-control"
               requiredminlength="2"
@@ -85,6 +91,8 @@
               name="edad"
               pattern="[0-9]+"
               type="number"
+              min="18"
+              max="99"
               placeholder="Edad"
               formControlName="edad"
             />
@@ -111,7 +119,7 @@
               <br />
             </div>
             <div class="col-md-2">
-              <label for="inputCity" class="form-label">Ciudad</label>
+              <label for="inputCity" class="form-label">Municipio</label>
               <select id="inputCity" class="form-select">
                 <option *ngFor="let cp of cpResult">{{cp.nom_entidad}}</option>
               </select>
@@ -119,7 +127,7 @@
             </div>
 
             <div class="col-md-2">
-              <label for="inputCol" class="form-label">Colonia</label>
+              <label for="inputCol" class="form-label">Nombre de Entidad</label>
               <select id="inputCol" class="form-select">
                 <option *ngFor="let cp of cpResult">{{cp.nom_asentamientos}}</option>
               </select>
@@ -129,11 +137,13 @@
             <br />
             <div class="row align-items-end">
               <div class="col-2">
+                <label for="inputZip" class="form-label">Tipo de Identificación</label>
                 <select formControlName="id_cat_ide" class="form-select">
                   <option *ngFor="let ide of id_cat_ide" value="{{ide.id_cat_ide}}">{{ide.nom_ide}}</option>
                 </select>
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Núm. de Identificación</label>
                 <input
                   class="form-control"
                   name="num_ide"
@@ -144,17 +154,21 @@
                 />
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Teléfono</label>
                 <input
                   class="form-control"
                   name="phone"
                   type="text"
                   placeholder="Teléfono"
                   pattern="[0-9]+"
+                  requiredminlength="10"
+                  maxlength="10"
                   formControlName="telefono"
                   minlength="10"
                 />
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Correo Electrónico</label>
                 <input
                   class="form-control"
                   name="email"
@@ -167,6 +181,7 @@
             <br />
             <div class="row mt-3 align-items-center">
               <div class="col">
+                <label for="inputZip" class="form-label">Calle</label>
                 <input
                   class="form-control"
                   name="nom_direccion"
@@ -177,6 +192,7 @@
                 />
               </div>
               <div class="col-2">
+                <label for="inputZip" class="form-label">Núm. Exterior</label>
                 <input
                   class="form-control"
                   name="num_ext"
@@ -187,6 +203,7 @@
                 />
               </div>
               <div class="col-2">
+                <label for="inputZip" class="form-label">Núm. Interior</label>
                 <input
                   class="form-control"
                   name="num_int"
@@ -197,6 +214,7 @@
                 />
               </div>
               <div class="col">
+                <label for="inputZip" class="form-label">Cruzamientos</label>
                 <input
                   class="form-control"
                   name="cru"

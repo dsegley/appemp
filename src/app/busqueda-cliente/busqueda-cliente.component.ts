@@ -18,6 +18,7 @@ export class BusquedaClienteComponent implements OnInit, OnDestroy, AfterViewIni
 
   loading = false
   showAlert = false
+  showTable = true
   id_detalle_prenda: string = ""
   query = ""
 
@@ -59,6 +60,7 @@ export class BusquedaClienteComponent implements OnInit, OnDestroy, AfterViewIni
       this.clientSearchResult = data
       this.dtTrigger.next()
       this.loading = false
+      this.showTable = false
       if (this.clientSearchResult.length < 1) {
         this.showAlert = true
       }

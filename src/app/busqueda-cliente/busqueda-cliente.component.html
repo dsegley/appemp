@@ -18,7 +18,7 @@
           class="bi bi-plus-lg"></i></button>
     </div>
     <form>
-      <div class="row justify-content-md-center">
+      <div [style.color]="showTable ? 'white' : 'black'" class="row justify-content-md-center">
         <div class="col-8">
           <div class="input-group">
             <input [(ngModel)]="query" name="query" type="text" required pattern="[A-Za-z]{3}" class="form-control"
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="mt-5 table row-border hover">
+        <table [style.color]="showTable ? 'white' : 'black'" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="mt-5 table row-border hover">
           <thead>
             <tr>
               <th scope="col">#</th>
