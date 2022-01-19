@@ -17,6 +17,7 @@ export class BusquedaArticuloComponent implements OnInit, OnDestroy, AfterViewIn
   public busqueda: Prenda[] = []
   public query: string = ''
   public showAlert = false
+  public showTable = true
 
   loading = false
   dtOptions: DataTables.Settings = {};
@@ -62,7 +63,8 @@ export class BusquedaArticuloComponent implements OnInit, OnDestroy, AfterViewIn
     this.busqueda = []
     this.prendaService.searchItem(this.query).subscribe(data => {
       this.busqueda = data;
-      this.loading = false
+      this.loading = false;
+      this.showTable = false;
       this.dtTrigger.next()
       if (this.busqueda.length < 1) {
         this.showAlert = true
