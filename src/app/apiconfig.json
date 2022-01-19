@@ -3,6 +3,13 @@
     "settings": {
         "david": {
             "host": "10.60.63.75",
+
+            "port": "5000",
+            "default_ver": "v1"
+        },
+        "david_home": {
+            "host": "localhost",
+
             "port": "5000",
             "default_ver": "v1"
         }
