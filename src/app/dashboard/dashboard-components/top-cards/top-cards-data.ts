@@ -13,13 +13,13 @@ export const topcards: topcard[] = [
         icon: 'bi bi-wallet',
         title: 'Nueva Cotización',
         subtitle: '',
-        href: '/busqueda-articulo'
+        href: '/busqueda-articulo',
     },
     {
         bgcolor: 'danger',
         icon: 'bi bi-coin',
         title: 'Registrar Pago',
         subtitle: '',
-        href: '/busqueda-boleta'
+        href: '/busqueda-boleta',
     }
 ] 
