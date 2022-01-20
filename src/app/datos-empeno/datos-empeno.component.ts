@@ -31,6 +31,7 @@ export class DatosEmpenoComponent implements OnInit {
   pagoTotal = 0.0
   adeudo = 0.0
   currentTab = PageTabs.Boleta
+  inicio=true
 
   constructor(
     private pledgeService: PledgeService,
@@ -155,6 +156,7 @@ export class DatosEmpenoComponent implements OnInit {
     const final =  moment(new Date(this.datosBoleta.fecha_fin), "DD MM YYYY", true).utc()
     if (today > final || this.datosBoleta.id_cat_stats_bol == 3) {
       this.showModal("La boleta ya esta vencida")
+      this.inicio=false
       return
     }
 
@@ -187,6 +189,8 @@ export class DatosEmpenoComponent implements OnInit {
         next: (data) => {
           this.showModal("Pago registrado con exito")
           this.ngOnInit()
+          this.inicio=false
+
         },
         error: () =>{
           this.showModal("Ah ocurrido un error")
