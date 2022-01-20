@@ -9,7 +9,7 @@ export class TopSellingComponent implements OnInit {
 
   topSelling:Product[];
 
-  constructor() { 
+  constructor() {
 
     this.topSelling=TopSelling;
   }
