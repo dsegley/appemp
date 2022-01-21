@@ -36,6 +36,7 @@ import { ModalMessageComponent } from './shared/modal-message/modal-message.comp
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ClientsComponent } from './clients/clients.component';
 import { DataTablesModule } from "angular-datatables";
+import { ConsolaComponent } from './consola/consola.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -60,6 +61,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ModalMessageComponent,
     BreadcrumbComponent,
     ClientsComponent,
+    ConsolaComponent,
   ],
   imports: [
     CommonModule,

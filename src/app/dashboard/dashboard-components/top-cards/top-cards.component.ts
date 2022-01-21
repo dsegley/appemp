@@ -1,19 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {topcard,topcards} from './top-cards-data';
-import { FormsModule } from '@angular/forms';
-import { NgbActiveModal, NgbModal, NgbDatepicker, NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
-
-@Component({
-  selector: 'app-console.component',
-  templateUrl: './console.component.html'
-})
-export class ConsoleModalComponent {
-  constructor(public activeModal: NgbActiveModal) {}
-
-  onDateSelect(event: any) {
-    
-  }
-}
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { ConsolaComponent } from '../../../consola/consola.component';
 
 @Component({
   selector: 'app-top-cards',
@@ -33,6 +21,8 @@ export class TopCardsComponent implements OnInit {
 
 
   consola() {
-    this.modalService.open(ConsoleModalComponent, {ariaLabelledBy: 'modal-basic-title'})
+    const activeModal = this.modalService.open(ConsolaComponent, { 
+      ariaLabelledBy: 'modal-basic-title' 
+    })
   }
 }

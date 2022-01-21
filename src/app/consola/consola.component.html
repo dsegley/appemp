@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title">Selecciona una fecha</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body center">
+      <!-- 1. inline datepicker -->
+    <div class="text-center">
+        <ngb-datepicker #d></ngb-datepicker>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close()">Aceptar</button>
+</div>
