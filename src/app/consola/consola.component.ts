@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { BatchService } from '../services/batch/batch.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-consola',
@@ -8,9 +10,25 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ConsolaComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal) { }
+  date = moment()
+
+  constructor(
+    public activeModal: NgbActiveModal,
+    private batchService: BatchService
+  ) 
+  { }
 
   ngOnInit(): void {
   }
 
+
+  submit() {
+    this.activeModal.close()
+    const fechaCorte = moment(
+      this.date.day + "/" + this.date.month + "/" + this.date.year, "DD MM YYYY", false
+     ).utc().format()
+    this.batchService.runBatch(fechaCorte).subscribe(() => {
+
+    })
+  }
 }
