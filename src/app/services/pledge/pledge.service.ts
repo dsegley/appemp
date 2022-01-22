@@ -24,4 +24,13 @@ export class PledgeService {
     const endpoint = this.baseURL + "pledge";
     return this.httpClient.post(endpoint, new_pledge)
   }
+
+  /** Lista todos las boletas */
+  public pledgeList(limit : number = 0) : Observable<any> {
+    let endpoint = API_SERVER_BASE_URL + "pledge_list"
+    if (limit > 0) {
+      endpoint += "?limit=" + limit
+    }
+    return this.httpClient.get(endpoint)
+  }
 }

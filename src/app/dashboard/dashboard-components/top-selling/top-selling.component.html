@@ -1,44 +1,48 @@
 <div class="card">
     <div class="card-body">
         <!-- title -->
-                <h4 class="card-title">Top Transactions</h4>
-                <h5 class="card-subtitle">BOLETAS ACTIVAS</h5>
+                <h4 class="card-title">Empeños</h4>
+                <h5 class="card-subtitle">BOLETAS</h5>
 
         <!-- title -->
         <div class="table-responsive">
-            <table class="table align-middle">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table align-middle">
                 <thead>
                     <tr>
-                        <th class="text-dark font-medium fs-4">Clientes</th>
+                        <th class="text-dark font-medium fs-4">Cliente</th>
                         <th class="text-dark font-medium fs-4">ID Boleta</th>
                         <th class="text-dark font-medium fs-4">Fecha de Alta</th>
                         <th class="text-dark font-medium fs-4">Fecha Final</th>
                         <th class="text-dark font-medium fs-4">Monto Préstamo</th>
+                        <th class="text-dark font-medium fs-4">Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let ts of topSelling'>
+                    <tr *ngFor='let b of boletas'>
                         <td>
                             <div class="d-flex align-items-center">
-                                <!--<img [src]=ts.image alt="user" width="45" class="rounded-circle"> -->
+                                <img [src]="b.pic" alt="user" width="45" class="rounded-circle">
 
                                 <div class="ms-3">
-                                    <h5 class="mb-0 font-medium">{{ts.uname}}</h5>
-                                    <span class="text-muted">{{ts.gmail}}</span><br>
-                                    <label for="exampleFormControlInput1" class="form-label">{{ts.telefono}}</label>
+                                    <h5 class="mb-0 font-medium">{{b.nombre_completo}}</h5>
+                                    <span class="text-muted">{{b.dir_email}}</span><br>
+                                    <label for="exampleFormControlInput1" class="form-label">{{b.no_tel}}</label>
                                 </div>
                             </div>
                         </td>
-                        <td class="fs-4">{{ts.productName}}</td>
+                        <td class="fs-4">{{b.id_boleta}}</td>
                         <td>
-                            <label for="exampleFormControlInput1" class="form-label">{{ts.status}}</label>
+                            <label style="text-transform: capitalize;" for="exampleFormControlInput1" class="form-label">{{b.fecha_alta | date: 'fullDate':'UTC':'es'}}</label>
                         </td>
 
                         <td>
-                            <h5 class="mb-0 fw-normal">{{ts.weeks}}</h5>
+                            <h5 style="text-transform: capitalize;" class="mb-0 fw-normal">{{b.fecha_fin | date: 'fullDate':'UTC':'es' }}</h5>
                         </td>
                         <td>
-                            <h5 class="mb-0 fw-normal">{{ts.budget}}</h5>
+                            <h5 class="mb-0 fw-normal">{{b.mont_prest_total}}</h5>
+                        </td>
+                        <td>
+                            <h5 class="mb-0 fw-normal">{{b.nom_stats_bol}}</h5>
                         </td>
                     </tr>
                 </tbody>

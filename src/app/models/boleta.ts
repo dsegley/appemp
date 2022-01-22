@@ -22,5 +22,8 @@ export class Boleta {
     tasa_interes!: number;
     periodo!: number;
     nom_stats_bol!: number;
-    prendas!: Prenda[]
+    prendas!: Prenda[];
+    nombre_completo!: string;
+    dir_email!: string;
+    no_tel!: number;
 }
