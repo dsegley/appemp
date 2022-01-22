@@ -72,7 +72,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
     NgbModule,
     NgbModalModule,
-    RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy', onSameUrlNavigation: 'reload' }),
     PerfectScrollbarModule,
     CountUpModule,
     DataTablesModule,
