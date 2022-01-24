@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Boleta } from '../../../models/boleta';
 import { PledgeService } from '../../../services/pledge/pledge.service';
+import { TSMap } from "typescript-map"
 
 @Component({
   selector: 'app-top-selling',
@@ -17,6 +18,8 @@ export class TopSellingComponent implements OnInit, OnDestroy {
     "assets/images/users/user4.jpg",
   ]
 
+  clientPics = new TSMap<number, number>();
+
   constructor(private pledgeService: PledgeService) {
 
   }
@@ -26,10 +29,27 @@ export class TopSellingComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+
+    let savedClientPics = localStorage.getItem("clientPics")
+    if (savedClientPics) {
+      let parsedData = JSON.parse(savedClientPics)
+      for (var value in parsedData) {
+        this.clientPics.set(+value, parsedData[value])
+      }
+    }
+
     this.pledgeService.pledgeList().subscribe(data => {
       for (const i of data) {
-        i.pic = this.pics[Math.floor(Math.random() * 2)]
+        if (!this.clientPics.has(i.id_persona)) {
+          i.pic = this.pics[Math.floor(Math.random() * 2)]
+          this.clientPics.set(i.id_persona, i.pic)
+        }
+        else {
+          i.pic = this.clientPics.get(i.id_persona)
+        }
       }
+
+      localStorage.setItem('clientPics', JSON.stringify(this.clientPics.toJSON()))
 
       this.boletas = data
       this.dtTrigger.next()

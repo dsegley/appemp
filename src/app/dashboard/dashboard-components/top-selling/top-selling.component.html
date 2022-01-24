@@ -42,7 +42,9 @@
                             <h5 class="mb-0 fw-normal">{{b.mont_prest_total}}</h5>
                         </td>
                         <td>
-                            <h5 class="mb-0 fw-normal">{{b.nom_stats_bol}}</h5>
+                            <h5 *ngIf="b.id_cat_stats_bol == 1" class="text-success mb-0 fw-normal">{{b.nom_stats_bol}}</h5>
+                            <h5 *ngIf="b.id_cat_stats_bol == 2" class="text-warning mb-0 fw-normal">{{b.nom_stats_bol}}</h5>
+                            <h5 *ngIf="b.id_cat_stats_bol == 3" class="text-danger mb-0 fw-normal">{{b.nom_stats_bol}}</h5>
                         </td>
                     </tr>
                 </tbody>
