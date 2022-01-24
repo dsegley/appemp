@@ -26,4 +26,5 @@ export class Boleta {
     nombre_completo!: string;
     dir_email!: string;
     no_tel!: number;
+    pago_total!: number;
 }

@@ -55,7 +55,7 @@
                             <th>Estado</th>
                         </TR>
                         <TR>
-                            <TD>${{datosBoleta.mont_prest_total}}</TD>
+                            <TD>{{datosBoleta.mont_prest_total | currency}}</TD>
                             <TD>{{datosBoleta.fecha_alta | date: 'fullDate':'UTC':'es'}}</TD>
                             <TD>{{datosBoleta.fecha_fin | date: 'fullDate':'UTC':'es'}}</TD>
                             <TD>{{datosBoleta.tasa_interes * 100}}%</TD>
@@ -80,7 +80,7 @@
                                     <td>{{item.marca}}</td>
                                     <td>{{item.modelo}}</td>
                                     <td>{{item.estado_prenda}}</td>
-                                    <td>${{item.monto_prestamo}}</td>
+                                    <td>{{item.monto_prestamo | currency}}</td>
                                 </tr>
                             </table>
                         </ng-template>
@@ -104,10 +104,10 @@
                         <td>{{i + 1}}</td>
                         <td>{{item.fecha_pago | date: 'fullDate':'UTC':'es'}}</td>
                         <td>{{item.nom_stats_pago}}</td>
-                        <td>${{item.monto}}</td>
+                        <td>{{item.monto | currency}}</td>
                     </tr>
                 </table>
-                <h2 *ngIf="forPayment" class="text-end">Total: ${{pagoTotal}}</h2>
+                <h2 *ngIf="forPayment" class="text-end">Total: {{pagoTotal | currency}}</h2>
             </div>
         </div>
         <br>
@@ -117,7 +117,7 @@
             <div class="row">
                 <div class="col-md-5 offset-md-10">
                     <div class="col-5">
-                        <h4>Tu adeudo es de: ${{adeudo}}</h4>
+                        <h4>Tu adeudo es de: {{adeudo | currency}}</h4>
                         <input #monto class="form-control" name="num_ide" type="number" min="{{10}}" placeholder="Monto">
                         <button class="btn btn-success my-2" (click)="pagar(monto.value)" >Pagar</button>
                     </div>
