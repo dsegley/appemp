@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BoletaService } from '../services/boleta/boleta.service';
@@ -8,12 +8,22 @@ import { Boleta } from '../models/boleta';
 import { PaymentService } from '../services/payment/payment.service';
 import { Payment } from '../models/pago';
 import { PrendaService } from '../services/prenda/prenda.service';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
+import { TSMap } from 'typescript-map';
 
 
 enum PageTabs {
   Boleta = 0,
   Pagos = 1,
+}
+
+class MortageStep {
+  constructor(
+    public montoAPagar: number = 0.0,
+    public capital: number = 0.0,
+    public deuda: number = 0.0,
+    public pago: number = 0.0,
+  ) {}
 }
 
 
@@ -22,16 +32,23 @@ enum PageTabs {
   templateUrl: './datos-empeno.component.html',
   styleUrls: ['./datos-empeno.component.scss']
 })
-export class DatosEmpenoComponent implements OnInit {
+export class DatosEmpenoComponent implements OnInit, AfterViewInit {
 
+  currentDate: string = moment().utc(true).format()
   forPayment = false
   datosBoleta: Boleta = new Boleta()
+  deadlines = new TSMap<number, Moment>()
+  currentDeadLine = 0
   loading = true
   registroPagos: Payment[] = []
+  pagoMensual = 0.0 // monto a pagar este mes
   pagoTotal = 0.0
-  adeudo = 0.0
+  adeudoTotal = 0.0 // monto de prestamo mas interes
+  adeudoRestante = 0.0 // adeudo total - pago total
   currentTab = PageTabs.Boleta
-  inicio=true
+  interesTotal = 0.0 // monto de prestamo + (monto de prestamo *  tasa interes)
+  interes = 0.0 // interes total entre el periodo
+  inicio = true
 
   constructor(
     private pledgeService: PledgeService,
@@ -54,25 +71,45 @@ export class DatosEmpenoComponent implements OnInit {
         this.boletaService.getBoleta(+id).subscribe((data) => {
           this.datosBoleta = data
           this.forPayment = true
+
+          // Calcular deadlines
+          for (let i = 0; i < 10; i++) {
+            this.deadlines.set(i, 
+              moment(
+                new Date(this.datosBoleta.fecha_alta), "DD MM YYYY", true
+              ).utc().add(i + 1, "months").utc()
+            )
+          }
+
+          /** Globales */
+          this.interesTotal = +this.datosBoleta.mont_prest_total * +this.datosBoleta.tasa_interes
+          this.interes = this.interesTotal / this.datosBoleta.periodo
+          this.adeudoTotal = +this.datosBoleta.mont_prest_total + this.interesTotal
+          this.calcCurrentDeadLine()
+
           // obtener registro de pagos
           this.paymentService.getRegistroPagos(this.datosBoleta.id_boleta).subscribe({
             next: (data) => {
               this.registroPagos = data
-            
               // sumar registros de pago
               this.registroPagos.forEach(item => {
                 this.pagoTotal += item.monto;
               })
-              this.adeudo = +this.datosBoleta.mont_prest_total - this.pagoTotal
-              if (this.adeudo < 0) {
-                this.adeudo = 0
+
+              this.adeudoRestante = this.adeudoTotal - this.pagoTotal
+              if (this.adeudoRestante < 0) {
+                this.adeudoRestante = 0
               }
+
+              this.pagoMensual = this.calcMortage(this.currentDeadLine).montoAPagar
+
               this.loading = false
             },
             error: (error) => {
               if (error === "NOT FOUND") {
                 // El backend retorna 404
-                this.adeudo = this.datosBoleta.mont_prest_total
+                this.pagoMensual = this.calcMortage(0).montoAPagar
+                this.adeudoRestante = this.adeudoTotal
                 this.loading = false 
               }
             }
@@ -105,6 +142,9 @@ export class DatosEmpenoComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngAfterViewInit(): void {
   }
 
   switchTabs() {
@@ -160,7 +200,7 @@ export class DatosEmpenoComponent implements OnInit {
       return
     }
 
-    monto = Math.min(monto, this.adeudo)
+    monto = Math.min(monto, this.adeudoRestante)
 
     if (monto > 0) {
 
@@ -211,5 +251,65 @@ export class DatosEmpenoComponent implements OnInit {
       ariaLabelledBy: 'modal-basic-title' 
     })
     activeModal.componentInstance.message = message
+  }
+
+  private calcMortage(numPago: number): MortageStep {
+    const periodo = this.datosBoleta.periodo
+
+    var deuda = 0.0
+    var capital = 0.0
+    var montoAPagar = 0.0
+    var pago = 0.0
+
+    if (numPago == 0) {
+      if (this.registroPagos.length > 0) {
+        pago = this.registroPagos[0].monto
+      }
+      
+      capital = this.datosBoleta.mont_prest_total / periodo
+      montoAPagar = this.adeudoTotal / periodo
+      deuda = this.datosBoleta.mont_prest_total + this.interes - pago
+      return {montoAPagar, capital, deuda, pago}
+    }
+
+    const anterior = this.calcMortage(numPago - 1)
+
+    if (this.registroPagos.length > numPago) {
+      pago = this.registroPagos[numPago].monto
+    }
+    
+    deuda = anterior.deuda + this.interes - pago
+    capital = anterior.deuda / (periodo - numPago)
+    montoAPagar = capital + this.interes
+    
+    return {montoAPagar, capital, deuda, pago}
+  }
+
+  changeDate(id: number) {
+    const initial_date = moment(
+      new Date(this.datosBoleta.fecha_alta), "DD MM YYYY", true
+    ).utc()
+
+    if (id == -1) {
+      this.currentDate = moment().utc(true).format()
+      return
+    }
+    this.currentDate = moment(initial_date).add(id + 1, 'months').utc().format()
+    this.calcCurrentDeadLine()
+    this.pagoMensual = this.calcMortage(this.currentDeadLine).montoAPagar
+  }
+
+  calcCurrentDeadLine() {
+    // ¿En que deadline nos encontramos?
+    for (let i = 0; i <= this.deadlines.length - 1; ++i) {
+      let is = moment(this.currentDate).isSameOrBefore(
+        this.deadlines.get(i).utc()
+      )
+
+     if (is) {
+       this.currentDeadLine = i
+       break
+     }
+    }
   }
 }

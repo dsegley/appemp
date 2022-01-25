@@ -11,8 +11,8 @@
                     <tr>
                         <th class="text-dark font-medium fs-4">Cliente</th>
                         <th class="text-dark font-medium fs-4">ID Boleta</th>
-                        <th class="text-dark font-medium fs-4">Fecha de Alta</th>
-                        <th class="text-dark font-medium fs-4">Fecha Final</th>
+                        <th class="text-dark font-medium fs-4">Fecha de alta</th>
+                        <th class="text-dark font-medium fs-4">Fecha de vencimiento</th>
                         <th class="text-dark font-medium fs-4">Monto de préstamo</th>
                         <th class="text-dark font-medium fs-4">Pago total</th>
                         <th class="text-dark font-medium fs-4">Estado</th>
@@ -33,7 +33,7 @@
                         </td>
                         <td class="fs-4">{{b.id_boleta}}</td>
                         <td>
-                            <label style="text-transform: capitalize;" for="exampleFormControlInput1" class="form-label">{{b.fecha_alta | date: 'fullDate':'UTC':'es'}}</label>
+                            <h5 style="text-transform: capitalize;" class="mb-0 fw-normal">{{b.fecha_alta | date: 'fullDate':'UTC':'es'}}</h5>
                         </td>
 
                         <td>
