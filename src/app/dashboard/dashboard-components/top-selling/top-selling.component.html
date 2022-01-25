@@ -17,7 +17,7 @@
                         <th class="text-dark font-medium fs-4">ID Boleta</th>
                         <th class="text-dark font-medium fs-4">Fecha de alta</th>
                         <th class="text-dark font-medium fs-4">Fecha de vencimiento</th>
-                        <th class="text-dark font-medium fs-4">Monto de préstamo</th>
+                        <th class="text-dark font-medium fs-4">Adeudo</th>
                         <th class="text-dark font-medium fs-4">Pago total</th>
                         <th class="text-dark font-medium fs-4">Estado</th>
                     </tr>
@@ -44,7 +44,7 @@
                             <h5 style="text-transform: capitalize;" class="mb-0 fw-normal">{{b.fecha_fin | date: 'fullDate':'UTC':'es' }}</h5>
                         </td>
                         <td>
-                            <h5 class="mb-0 fw-normal">{{b.mont_prest_total | currency}}</h5>
+                            <h5 class="mb-0 fw-normal">{{b.mont_prest_total + b.mont_prest_total * b.tasa_interes| currency}}</h5>
                         </td>
                         <td>
                             <h5 class="mb-0 fw-normal">{{b.pago_total | currency}}</h5>
