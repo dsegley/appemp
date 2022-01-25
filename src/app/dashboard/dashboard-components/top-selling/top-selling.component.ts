@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Boleta } from '../../../models/boleta';
 import { PledgeService } from '../../../services/pledge/pledge.service';
 import { TSMap } from "typescript-map"
+import moment from 'moment';
+import { BatchService } from '../../../services/batch/batch.service';
 
 @Component({
   selector: 'app-top-selling',
@@ -10,6 +12,9 @@ import { TSMap } from "typescript-map"
 })
 export class TopSellingComponent implements OnInit, OnDestroy {
 
+  private currentDateObservable: Observable<string>
+
+  currentDate = moment().utc().format()
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   boletas: Boleta[] = []
@@ -20,14 +25,26 @@ export class TopSellingComponent implements OnInit, OnDestroy {
 
   clientPics = new TSMap<number, number>();
 
-  constructor(private pledgeService: PledgeService) {
-
+  constructor(
+    private pledgeService: PledgeService,
+    private batchService: BatchService,
+  ) {
+    this.currentDateObservable = this.batchService.selectedDateSubject.asObservable()
+    this.currentDateObservable.subscribe(val => {
+      this.currentDate = val
+    })
   }
 
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 5,
+      columnDefs: [
+        { orderable: true, targets: 0 }
+      ],
+      order: [
+        [1, "desc"]
+      ],
     };
 
     let savedClientPics = localStorage.getItem("clientPics")

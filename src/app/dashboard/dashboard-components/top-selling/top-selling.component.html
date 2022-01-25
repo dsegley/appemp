@@ -1,9 +1,13 @@
+<style>
+    .es-datetime::first-letter {
+    text-transform: capitalize;
+}
+</style>
 <div class="card">
     <div class="card-body">
         <!-- title -->
-                <h4 class="card-title">Empeños</h4>
-                <h5 class="card-subtitle">BOLETAS</h5>
-
+                <h4 class="card-title text-center">Lista de boletas</h4>
+                <h5 class="card-title text-center es-datetime">{{currentDate | date: 'fullDate':'UTC':'es'}}</h5>
         <!-- title -->
         <div class="table-responsive">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table align-middle">

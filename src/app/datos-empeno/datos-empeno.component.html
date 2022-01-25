@@ -20,31 +20,41 @@
         <div class="card-title text-center">
             <h3 class="card-title">Datos de empeño</h3>
             <h4 name="currentDate" class="card-subtitle es-datetime">{{currentDate | date: 'fullDate':'UTC':'es'}}</h4>
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input (click)="changeDate(-1)" type="radio" class="btn-check" name="btnradio" id="btnradio0" autocomplete="off" checked>
+            <div *ngIf="forPayment" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input (click)="changeDate(-1)" type="radio" class="btn-check" name="btnradio" id="btnradio0"
+                    autocomplete="off" checked>
                 <label class="btn btn-outline-primary" for="btnradio0">Hoy</label>
-                <input (click)="changeDate(0)" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                <input (click)="changeDate(0)" type="radio" class="btn-check" name="btnradio" id="btnradio1"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio1">1</label>
-                <input (click)="changeDate(1)" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <input (click)="changeDate(1)" type="radio" class="btn-check" name="btnradio" id="btnradio2"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio2">2</label>
-                <input (click)="changeDate(2)" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <input (click)="changeDate(2)" type="radio" class="btn-check" name="btnradio" id="btnradio3"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio3">3</label>
-                <input (click)="changeDate(3)" type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                <input (click)="changeDate(3)" type="radio" class="btn-check" name="btnradio" id="btnradio4"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio4">4</label>
-                <input (click)="changeDate(4)" type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+                <input (click)="changeDate(4)" type="radio" class="btn-check" name="btnradio" id="btnradio5"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio5">5</label>
-                <input (click)="changeDate(5)" type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+                <input (click)="changeDate(5)" type="radio" class="btn-check" name="btnradio" id="btnradio6"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio6">6</label>
-                <input (click)="changeDate(6)" type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
+                <input (click)="changeDate(6)" type="radio" class="btn-check" name="btnradio" id="btnradio7"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio7">7</label>
-                <input (click)="changeDate(7)" type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
+                <input (click)="changeDate(7)" type="radio" class="btn-check" name="btnradio" id="btnradio8"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio8">8</label>
-                <input (click)="changeDate(8)" type="radio" class="btn-check" name="btnradio" id="btnradio9" autocomplete="off">
+                <input (click)="changeDate(8)" type="radio" class="btn-check" name="btnradio" id="btnradio9"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio9">9</label>
-                <input (click)="changeDate(9)" type="radio" class="btn-check" name="btnradio" id="btnradio10" autocomplete="off">
+                <input (click)="changeDate(9)" type="radio" class="btn-check" name="btnradio" id="btnradio10"
+                    autocomplete="off">
                 <label class="btn btn-outline-primary" for="btnradio10">10</label>
             </div>
-            <br>
         </div>
         <div [style.display]="inicio ? 'none':'yes'" class="row">
             <div class="col-md-5 offset-md-10">
@@ -58,21 +68,28 @@
         <div class="">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a *ngIf="currentTab === 1" (click)="switchTabs()" class="nav-link" aria-current="page">Boleta</a>
-                    <a *ngIf="currentTab === 0" class="nav-link active" aria-current="page">Boleta</a>
+                    <a (click)="changeCurrentTab(0)"
+                        [ngClass]="{'nav-link': true, 'active': currentTab === 0}"
+                        aria-current="page">Boleta</a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="currentTab === 0" (click)="switchTabs()" class="nav-link" aria-current="page">Pagos</a>
-                    <a *ngIf="currentTab === 1" class="nav-link active" aria-current="page">Pagos</a>
+                    <a (click)="changeCurrentTab(1)"
+                        [ngClass]="{'nav-link': true, 'active': currentTab === 1}"
+                        aria-current="page">Pagos</a>
+                </li>
+                <li class="nav-item">
+                    <a (click)="changeCurrentTab(2)"
+                        [ngClass]="{'nav-link': true, 'active': currentTab === 2}"
+                        aria-current="page">Tabla de Amortización</a>
                 </li>
             </ul>
             <div *ngIf="currentTab === 0">
                 <div class="mt-3 table-responsive-sm">
                     <table class="table">
                         <TR>
-                            <TH>Prestamo Total</TH>
-                            <TH>Fecha Inicial</TH>
-                            <TH>Fecha límite</TH>
+                            <TH>Prestamo total</TH>
+                            <TH>Fecha de alta</TH>
+                            <TH>Fecha de cierre</TH>
                             <TH>Tasa de interés</TH>
                             <TH>Periodo</TH>
                             <th>Estado</th>
@@ -132,6 +149,28 @@
                 </table>
                 <h2 *ngIf="forPayment" class="text-end">Total: {{pagoTotal | currency}}</h2>
             </div>
+            <div *ngIf="currentTab === 2">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha de corte</th>
+                        <th>Capital</th>
+                        <th>Cuota</th>
+                        <th>Pago mensual realizado</th>
+                        <th>Diferencia</th>
+                        <th>Deuda</th>
+                    </tr>
+                    <tr *ngFor="let row of mortageTable; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{deadlines[i].utc().format() | date: 'fullDate':'UTC':'es'}}</td>
+                        <td>{{row.capital | currency}}</td>
+                        <td>{{row.montoAPagar | currency}}</td>
+                        <td>{{row.pago | currency}}</td>
+                        <td>{{row.diferencia | currency}}</td>
+                        <td>{{row.deuda | currency}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <br>
         <br>
@@ -140,10 +179,10 @@
             <div class="row">
                 <div class="col-md-5 offset-md-10">
                     <div class="col-5">
-                        <h4>Tu pago de este mes es de: {{pagoMensual | currency}}</h4>
+                        <h4>Tu adeudo de este mes es de: {{monthlyPayment | currency}}</h4>
                         <input #monto class="form-control" name="num_ide" type="number" min="{{10}}"
                             placeholder="Monto">
-                        <button class="btn btn-success my-2" (click)="pagar(monto.value)">Pagar</button>
+                        <button class="btn btn-success my-2" (click)="pagar(+monto.value)">Pagar</button>
                     </div>
                 </div>
             </div>
