@@ -78,6 +78,7 @@ export class DatosEmpenoComponent implements OnInit {
             next: (data) => {
               this.registroPagos = data
               // sumar registros de pago
+              this.pagoTotal = 0
               this.registroPagos.forEach(item => {
                 this.pagoTotal += item.monto;
               })
