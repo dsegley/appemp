@@ -22,8 +22,8 @@
     <tbody>
       <tr *ngFor="let client of clients">
         <td>{{ client.numero_ide }}</td>
-        <td>{{ client.nom_1 + " " + client.nom_2 }}</td>
-        <td>{{ client.apellido_pat + " " + client.apellido_mat }}</td>
+        <td style="text-transform: capitalize;">{{ client.nom_1 + " " + client.nom_2 }}</td>
+        <td style="text-transform: capitalize;">{{ client.apellido_pat + " " + client.apellido_mat }}</td>
       </tr>
     </tbody>
     </table>

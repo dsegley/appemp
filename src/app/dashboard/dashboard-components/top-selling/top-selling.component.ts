@@ -14,7 +14,7 @@ export class TopSellingComponent implements OnInit, OnDestroy {
 
   private currentDateObservable: Observable<string>
 
-  currentDate = moment().utc().format()
+  currentDate = moment().locale('es-mx').format()
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   boletas: Boleta[] = []

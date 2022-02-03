@@ -1,13 +1,8 @@
-<style>
-    .es-datetime::first-letter {
-    text-transform: capitalize;
-}
-</style>
 <div class="card">
     <div class="card-body">
         <!-- title -->
                 <h4 class="card-title text-center">Lista de boletas</h4>
-                <h5 class="card-title text-center es-datetime">{{currentDate | date: 'fullDate':'UTC':'es'}}</h5>
+                <!-- <h5 class="card-title text-center es-datetime">{{currentDate | date: 'fullDate':'':'es'}}</h5> -->
         <!-- title -->
         <div class="table-responsive">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table align-middle">
@@ -29,7 +24,7 @@
                                 <img [src]="b.pic" alt="user" width="45" class="rounded-circle">
 
                                 <div class="ms-3">
-                                    <h5 class="mb-0 font-medium">{{b.nombre_completo}}</h5>
+                                    <h5 class="mb-0 font-medium" style="text-transform: capitalize;">{{b.nombre_completo}}</h5>
                                     <span class="text-muted">{{b.dir_email}}</span><br>
                                     <label for="exampleFormControlInput1" class="form-label">{{b.no_tel}}</label>
                                 </div>

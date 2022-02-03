@@ -61,11 +61,15 @@ export class DatosEmpenoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.retriveSavedDate()
+
     this.loading = true
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('boleta')
       if (id) {
         // mostrar datos de la boleta
+        this.inicio = false
         this.boletaService.getBoleta(+id).subscribe((data) => {
           this.datosBoleta = data
           this.forPayment = true
@@ -108,7 +112,9 @@ export class DatosEmpenoComponent implements OnInit {
         let cotizacion = localStorage.getItem('cotizacion_value')
 
         if (cotizacion) {
-          this.pledgeService.getDatosEmpeno(1, [+cotizacion]).subscribe(data => {
+          const date = moment(this.currentDate)
+          const dateStr = date.year() + "-" + (+date.month() + 1) + "-" + date.date()
+          this.pledgeService.getDatosEmpeno(1, [+cotizacion], dateStr).subscribe(data => {
             this.datosBoleta = data
             this.datosBoleta.mont_prest_total = data['monto_prestamo_total']
             const id_detalle_prenda = localStorage.getItem("id_detalle_prenda")
@@ -156,7 +162,7 @@ export class DatosEmpenoComponent implements OnInit {
       this.pledgeService.addEmpeno(this.datosBoleta).subscribe({
         next: (data) => {
           this.showModal("Datos registrados con exito. Boleta #" + data.id_boleta)
-          this.router.navigateByUrl("/datos-empeno/" + data.id_boleta)
+          this.router.navigateByUrl("/dashboard")
         },
         error: (err) => {
           this.showModal("Ha ocurrido un error.")
@@ -265,6 +271,13 @@ export class DatosEmpenoComponent implements OnInit {
     this.interesTotal = +this.datosBoleta.mont_prest_total * +this.datosBoleta.tasa_interes
     this.interes = this.interesTotal / this.datosBoleta.periodo
     this.adeudoTotal = +this.datosBoleta.mont_prest_total + this.interesTotal
+  }
+
+  private retriveSavedDate() {
+    const savedDate = localStorage.getItem("date")
+    if (savedDate) {
+      this.currentDate = savedDate
+    }
   }
 
   private calcMortageTable() {

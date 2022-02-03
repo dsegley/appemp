@@ -13,10 +13,10 @@ export class PledgeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getDatosEmpeno(id_producto_emp: number, montos_aprobados: number[]) : Observable<any> {
+  getDatosEmpeno(id_producto_emp: number, montos_aprobados: number[], initial_date: string) : Observable<any> {
     const montosToJson = JSON.stringify({montos_aprobados})
     const montosURI = encodeURIComponent(montosToJson)
-    const endpoint = this.baseURL + 'pledge?prod=' + id_producto_emp + '&montos=' + montosURI
+    const endpoint = this.baseURL + 'pledge?prod=' + id_producto_emp + '&montos=' + montosURI + '&initialdate=' + initial_date
     return this.httpClient.get(endpoint)
   }
 

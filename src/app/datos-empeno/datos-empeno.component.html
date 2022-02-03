@@ -164,7 +164,8 @@
                         <td>{{i + 1}}</td>
                         <td>{{deadlines[i].utc().format() | date: 'fullDate':'UTC':'es'}}</td>
                         <td>{{row.capital | currency}}</td>
-                        <td>{{row.montoAPagar | currency}}</td>
+                        <td *ngIf="!forPayment">{{mortageTable[0].montoAPagar | currency}}</td>
+                        <td *ngIf="forPayment">{{row.montoAPagar| currency}}</td>
                         <td>{{row.pago | currency}}</td>
                         <td>{{row.diferencia | currency}}</td>
                         <td>{{row.deuda | currency}}</td>

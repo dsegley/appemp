@@ -76,6 +76,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     CountUpModule,
     DataTablesModule,
+    NgbDatepickerModule,
+  ],
+  exports: [
+    
   ],
   providers: [
     {

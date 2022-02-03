@@ -9,7 +9,7 @@ import { FeedsComponent } from "./dashboard-components/feeds/feeds.component";
 import { TopSellingComponent } from "./dashboard-components/top-selling/top-selling.component";
 import { TopCardsComponent } from "./dashboard-components/top-cards/top-cards.component";
 import { BlogCardsComponent } from "./dashboard-components/blog-cards/blog-cards.component";import { DataTablesModule } from "angular-datatables";
-;
+import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
 const routes: Routes = [
   {
@@ -30,6 +30,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgApexchartsModule,
     DataTablesModule,
+    NgbDatepickerModule,
   ],
   declarations: [
     DashboardComponent,
@@ -37,7 +38,7 @@ const routes: Routes = [
     FeedsComponent,
     TopSellingComponent,
     TopCardsComponent,
-    BlogCardsComponent
+    BlogCardsComponent,
   ],
   exports: [
     DataTablesModule,

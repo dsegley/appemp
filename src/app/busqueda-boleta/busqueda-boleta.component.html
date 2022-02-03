@@ -46,7 +46,7 @@
              <tbody>
                <tr *ngFor="let item of searchBoletaResult;" scope="row">
                  <td>{{item.id_boleta}}</td>
-                 <td>{{item.nombre_completo}}</td>
+                 <td style="text-transform: capitalize;">{{item.nombre_completo}}</td>
                  <td class="es-datetime">{{item.fecha_alta | date: 'fullDate':'UTC':'es'}}</td>
                  <td class="es-datetime">{{item.fecha_fin | date: 'fullDate':'UTC':'es'}}</td>
                  <th><a [routerLink]="['/datos-empeno', item.id_boleta]" class="btn btn-outline-success btn-sm">Seleccionar</a></th>

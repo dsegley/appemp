@@ -21,5 +21,19 @@ export const topcards: topcard[] = [
         title: 'Registrar Pago',
         subtitle: '',
         href: '/busqueda-boleta',
-    }
+    },
+    {
+        bgcolor: 'warning',
+        icon: 'bi bi-people',
+        title: 'Clientes',
+        subtitle: '',
+        href: '/clientes',
+    },
+    {
+        bgcolor: 'primary',
+        icon: 'bi bi-file-earmark',
+        title: 'Boletas',
+        subtitle: '',
+        href: '/busqueda-boleta',
+    },
 ] 

@@ -52,7 +52,7 @@
             <tr *ngFor="let item of clientSearchResult; let i = index" scope="row">
               <td>{{i + 1}}</td>
               <td>{{item.numero_ide}}</td>
-              <td>{{item.nombre_completo}}</td>
+              <td style="text-transform: capitalize;">{{item.nombre_completo}}</td>
               <th><a (click)="saveSelectedClient(item.numero_ide)" routerLink="/datos-empeno"
                   class="btn btn-outline-success btn-sm">Seleccionar</a></th>
             </tr>

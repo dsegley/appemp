@@ -1,15 +1,34 @@
+<style>
+  .es-datetime::first-letter {
+  text-transform: capitalize;
+}
+</style>
 <div class="">
   <app-top-cards></app-top-cards>
 </div>
-<!-- ============================================================== -->
-<!-- Sales chart -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Sales chart -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Table -->
-<!-- ============================================================== -->
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+  <div class="col-lg-7">
+    <app-sales-summary></app-sales-summary>
+  </div>
+  <div class="col-lg-5">
+    <!-- <pre>Model: {{ datemodel | json }}</pre> -->
+    <div class="card h-100">
+      <div class="card-body">
+          <h4 class=" card-title es-datetime">{{date.format() | date: 'fullDate':'UTC':'es' }}</h4>
+          <h5 class="card-subtitle text-muted">Consola</h5>
+          <div class="feed-widget">
+              <div class="text-center feed-body">
+                  <ngb-datepicker #dp [startDate]="datemodel" (navigate)="dateNav = $event.next" [(ngModel)]="datemodel"></ngb-datepicker>
+              </div>
+          </div>
+          <hr>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-success" (click)="submit()">Ejecutar</button>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
 <app-top-selling></app-top-selling>
 <!-- ============================================================== -->
 <!-- Table -->

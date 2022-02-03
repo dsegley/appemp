@@ -1,16 +1,14 @@
-<div class="modal-header">
-    <h4 class="modal-title">Selecciona una fecha</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<div class="modal-body center">
-    <!-- 1. inline datepicker -->
-    <div class="text-center">
-        <ngb-datepicker [(ngModel)]="date"></ngb-datepicker>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">REPORTE DIARIO</h4>
+        <h5 class="card-subtitle text-muted">Registro de actividades</h5>
+        <div class="feed-widget mt-4">
+            <div class="text-center feed-body m-0">
+                <ngb-datepicker [(ngModel)]="date"></ngb-datepicker>
+            </div>
+        </div>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)="submit()">Aceptar</button>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary" (click)="submit()">Aceptar</button>
+    </div>
 </div>
