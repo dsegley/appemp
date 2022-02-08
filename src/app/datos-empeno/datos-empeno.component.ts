@@ -347,8 +347,6 @@ export class DatosEmpenoComponent implements OnInit {
 
       return true
     })
-
-    console.log(this.currentDeadLine)
   }
 
   /** Con la tabla de amortización se calcula el pago del mes actual */
