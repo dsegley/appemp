@@ -180,16 +180,6 @@ export class DatosEmpenoComponent implements OnInit {
       return
     }
 
-    // Comparar la fecha
-    if (this.currentDeadLine > 0) {
-      const prevRow = this.mortageTable[this.currentDeadLine - 1]
-      if (prevRow.pago < prevRow.montoAPagar) {
-        this.showModal("La boleta ya está vencida")
-        this.inicio = false
-        return
-      }
-    }
-
     monto = Math.min(monto, this.adeudoRestante)
 
     if (monto > 0) {
@@ -241,7 +231,7 @@ export class DatosEmpenoComponent implements OnInit {
   /** Sumar los registros de pago por fecha */
   private addPaymentsByDate() {
     const periodo = this.datosBoleta.periodo
-    const monthlyAmout = this.adeudoTotal / this.datosBoleta.periodo
+    const montlyPay = +(this.adeudoTotal / periodo).toFixed(2)
     var payments: number[] = []
 
     // ...
@@ -259,9 +249,9 @@ export class DatosEmpenoComponent implements OnInit {
         const date = moment(new Date(this.registroPagos[f].fecha_pago), "DD MM YYYY", true).utc()
 
         if (date.isSameOrBefore(deadline) && date.isAfter(pastdate)) {
-          if (payments[i] >= monthlyAmout) {
+          if (payments[i] >= montlyPay) {
             payments[i + 1] += this.registroPagos[f].monto
-            continue
+            continue;
           }
 
           payments[i] += this.registroPagos[f].monto
