@@ -241,6 +241,7 @@ export class DatosEmpenoComponent implements OnInit {
   /** Sumar los registros de pago por fecha */
   private addPaymentsByDate() {
     const periodo = this.datosBoleta.periodo
+    const monthlyAmout = this.adeudoTotal / this.datosBoleta.periodo
     var payments: number[] = []
 
     // ...
@@ -258,6 +259,11 @@ export class DatosEmpenoComponent implements OnInit {
         const date = moment(new Date(this.registroPagos[f].fecha_pago), "DD MM YYYY", true).utc()
 
         if (date.isSameOrBefore(deadline) && date.isAfter(pastdate)) {
+          if (payments[i] >= monthlyAmout) {
+            payments[i + 1] += this.registroPagos[f].monto
+            continue
+          }
+
           payments[i] += this.registroPagos[f].monto
         }
       }
@@ -269,8 +275,10 @@ export class DatosEmpenoComponent implements OnInit {
   /** Variables que se utilizan para generar la tabla de amortización */
   private calcGlobals() {
     this.interesTotal = +this.datosBoleta.mont_prest_total * +this.datosBoleta.tasa_interes
-    this.interes = this.interesTotal / this.datosBoleta.periodo
+    this.interes = +(this.interesTotal / this.datosBoleta.periodo).toFixed(2)
     this.adeudoTotal = +this.datosBoleta.mont_prest_total + this.interesTotal
+    this.calcDeadLines()
+    this.calcCurrentDeadLine()
   }
 
   private retriveSavedDate() {
@@ -283,8 +291,6 @@ export class DatosEmpenoComponent implements OnInit {
   private calcMortageTable() {
 
     /** Calcular dependencias */
-    this.calcDeadLines()
-    this.calcCurrentDeadLine()
     this.addPaymentsByDate()
 
     this.mortageTable = []
@@ -299,8 +305,8 @@ export class DatosEmpenoComponent implements OnInit {
 
     this.mortageTable.push({
       deuda: this.datosBoleta.mont_prest_total + this.interes - pago,
-      capital: this.datosBoleta.mont_prest_total / periodo,
-      montoAPagar: montoAPagar,
+      capital: +(this.datosBoleta.mont_prest_total / periodo).toFixed(2),
+      montoAPagar: +montoAPagar.toFixed(2),
       pago: pago,
       diferencia: montoAPagar - pago,
     })
@@ -313,7 +319,7 @@ export class DatosEmpenoComponent implements OnInit {
         pago = this.totalPaymentsByMonth[i]
       }
 
-      let capital = prevRow.deuda / (periodo - i)
+      let capital = +(prevRow.deuda / (periodo - i)).toFixed(2)
       let montoAPagar = capital + this.interes
 
       this.mortageTable.push({
@@ -344,7 +350,7 @@ export class DatosEmpenoComponent implements OnInit {
   /** Si la fecha cambia, recalcular la prox fecha de vencimiento */
   private calcCurrentDeadLine() {
     this.deadlines.every(e => {
-      if (moment(this.currentDate).isSameOrBefore(e.utc())) {
+      if (moment(this.currentDate).month() == e.month()) {
         this.currentDeadLine = this.deadlines.indexOf(e)
         return false
       }
