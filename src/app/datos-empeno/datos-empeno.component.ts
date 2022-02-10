@@ -265,8 +265,10 @@ export class DatosEmpenoComponent implements OnInit {
   /** Variables que se utilizan para generar la tabla de amortización */
   private calcGlobals() {
     this.interesTotal = +this.datosBoleta.mont_prest_total * +this.datosBoleta.tasa_interes
-    this.interes = this.interesTotal / this.datosBoleta.periodo
+    this.interes = +(this.interesTotal / this.datosBoleta.periodo).toFixed(2)
     this.adeudoTotal = +this.datosBoleta.mont_prest_total + this.interesTotal
+    this.calcDeadLines()
+    this.calcCurrentDeadLine()
   }
 
   private retriveSavedDate() {
@@ -279,8 +281,6 @@ export class DatosEmpenoComponent implements OnInit {
   private calcMortageTable() {
 
     /** Calcular dependencias */
-    this.calcDeadLines()
-    this.calcCurrentDeadLine()
     this.addPaymentsByDate()
 
     this.mortageTable = []
@@ -295,8 +295,8 @@ export class DatosEmpenoComponent implements OnInit {
 
     this.mortageTable.push({
       deuda: this.datosBoleta.mont_prest_total + this.interes - pago,
-      capital: this.datosBoleta.mont_prest_total / periodo,
-      montoAPagar: montoAPagar,
+      capital: +(this.datosBoleta.mont_prest_total / periodo).toFixed(2),
+      montoAPagar: +montoAPagar.toFixed(2),
       pago: pago,
       diferencia: montoAPagar - pago,
     })
@@ -309,7 +309,7 @@ export class DatosEmpenoComponent implements OnInit {
         pago = this.totalPaymentsByMonth[i]
       }
 
-      let capital = prevRow.deuda / (periodo - i)
+      let capital = +(prevRow.deuda / (periodo - i)).toFixed(2)
       let montoAPagar = capital + this.interes
 
       this.mortageTable.push({
