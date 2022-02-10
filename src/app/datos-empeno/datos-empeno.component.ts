@@ -161,7 +161,7 @@ export class DatosEmpenoComponent implements OnInit {
 
       this.pledgeService.addEmpeno(this.datosBoleta).subscribe({
         next: (data) => {
-          this.showModal("Datos registrados con exito. Boleta #" + data.id_boleta)
+          this.showModal("Datos registrados con éxito. Boleta #" + data.id_boleta)
           this.router.navigateByUrl("/dashboard")
         },
         error: (err) => {
@@ -205,7 +205,7 @@ export class DatosEmpenoComponent implements OnInit {
 
       this.paymentService.addPayment(payment).subscribe({
         next: (data) => {
-          this.showModal("Pago registrado con exito")
+          this.showModal("Pago registrado con éxito")
           this.ngOnInit()
           this.inicio = false
 

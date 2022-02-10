@@ -163,7 +163,7 @@ export class AgregarClienteComponent implements OnInit {
     this.loading = true
     this.clientService.addClient(newClient).subscribe({
       next: () => {
-        this.showModal("Cliente registrado con exito")
+        this.showModal("Cliente registrado con éxito")
         localStorage.setItem("selected_client_ide", newClient.numero_ide)
         this.router.navigateByUrl("/datos-empeno")
       },
